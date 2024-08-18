@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'include/head.html' %}
+    <title>cobalt instances</title>
+</head>
+<body>
+    <header>
+        {% include 'include/header.html' %}
+    </header>
+    <p style="text-align: center;" class="disabled">meanings of colors: green: trusted and safe; yellow: not trusted but looks safe; red: not safe, avoid at all costs; gray: offline</p>
+    <main style="display: flex;">
+        <div id="settings">
+            <div class="checkbox">
+                <input type="checkbox" id="safe"> <label for="safe">only show safe instances</label>
+            </div>
+
+            <div class="checkbox">
+                <input type="checkbox" id="online"> <label for="online">only show online instances</label>
+            </div>
+            <div class="checkbox">
+                <input type="checkbox" id="frontend"> <label for="frontend">only instances with frontend</label>
+            </div>
+            
+            <!-- <div id="workswith">
+                <p>only instances that work with</p>
+                <div class="checkbox">
+                    <input type="checkbox" id="youtube"> YouTube
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" id="youtubeMusic"> YouTube Music
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" id="youtubeShorts"> YouTube Shorts
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" id="tiktok"> TikTok
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" id="reddit"> Reddit
+                </div>
+            </div> -->
+        </div>
+        <table>
+            <tr>
+                <th>Frontend</th>
+                <th>API</th>
+                <th>Name</th>
+                <th>Score</th>
+            </tr>
+            {% for instance in instances %}
+                <tr class="trust{{ instance['trust'] }} score{{ instance['score'] }} frontend{{ instance['online']['frontend'] }}"">
+                    <td>
+                        {% if instance.get('frontend') %}
+                            <a href="{{ instance['protocol'] }}://{{ instance['frontend'] }}">
+                                {{ instance['frontend'] }}
+                            </a>
+                        {% else %}
+                            -
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{{ instance['protocol'] }}://{{ instance['api'] }}/api/serverInfo">
+                            {{ instance['api'] }}
+                        </a>
+                    </td>
+                    <td>{{ instance.get('name', '-') }}</td>
+                    <td>{{ instance['score'] }}%</td>
+                </tr>
+            {% endfor %}
+          </table>
+    </main>
+
+    <!-- option handling script -->
+    <style id="safeOptionStyle"></style>
+    <style id="onlineOptionStyle"></style>
+    <style id="frontendOptionStyle"></style>
+    <script>
+        document.getElementById("safe").addEventListener("change", function() {
+            if (this.checked) {
+                safeOptionStyle.innerText = ".trust0, .trust-1 {display: none;}"
+            } else {
+                safeOptionStyle.innerText = ""
+            }
+        });
+
+        document.getElementById("online").addEventListener("change", function() {
+            if (this.checked) {
+                onlineOptionStyle.innerText = ".score-1 {display: none;}"
+            } else {
+                onlineOptionStyle.innerText = ""
+            }
+        });
+
+        document.getElementById("frontend").addEventListener("change", function() {
+            if (this.checked) {
+                frontendOptionStyle.innerText = ".frontendFalse {display: none;}"
+            } else {
+                frontendOptionStyle.innerText = ""
+            }
+        });
+    </script>
+</body>
+</html>

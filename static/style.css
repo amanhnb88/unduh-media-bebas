@@ -1,0 +1,155 @@
+header,
+body {
+    background-color: #000000;
+    color: #FFFFFF;
+    font-family: 'Noto Sans Mono';
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+header {
+    margin-bottom: 2rem;
+}
+
+#headerlinks {
+    display: flex;
+    align-items: center;
+    font-size: 1.3rem;
+}
+
+#headertext {
+    font-size: 5rem;
+    padding: 0;
+    letter-spacing: -.35rem;
+    font-weight: 400 !important;
+    text-align: center;
+    cursor: pointer;
+}
+
+#headerlinks > a::after {
+    content: " · ";
+    white-space: pre;
+    color: #FFFFFF;
+}
+
+#headerlinks > a#lastheaderlink::after {
+    content: "";
+}
+
+/**/
+
+#settings,
+#workswith {
+    display: flex;
+    flex-direction: column;
+}
+
+.checkbox {
+    display: inline-flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    padding: .4rem calc(.5rem * 2 - .2rem) calc(.5rem - .1rem) .5rem;
+    width: auto;
+    margin-right: .7rem;
+    margin-bottom: .7rem;
+    background: rgb(25, 25, 25);
+    border-radius: 9px;
+}
+
+input:checked {
+    background-color: rgb(225, 225, 225);
+    border: 0;
+}
+
+.checkbox > input {
+    cursor: pointer;
+    border-radius: 4px;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    z-index: 0;
+    margin-right: .7rem;
+    border: .15rem solid rgb(225, 225, 225);
+}
+
+/*
+.selector-container {
+    display: flex;
+}
+
+.selector {
+    width: 100%;
+    color: #FFFFFF;
+    background-color: #000000;
+    border: none !important;
+    font-size: 20px;
+}
+
+https://stackoverflow.com/a/70272859/26767691
+select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: none;
+}
+*/
+
+/**/
+
+table {
+    border-collapse: separate; 
+    border-spacing: 20px 0em;
+    overflow: auto;
+}
+
+th {
+    text-align: left;
+}
+
+.trust0 {
+    color: #FFF0B6;
+}
+
+.trust1 {
+    color: #B6FFD4;
+}
+
+.trust-1 {
+    color: #FFB6B6 !important;
+}
+
+.score-1,
+.disabled {
+    color: #6E6E6E;
+}
+
+a {
+    color: unset;
+    text-decoration: none;
+}
+
+/* mobile */
+@media screen and (max-width: 500px) {
+    body {
+        width: 150%;
+    }
+
+    main {
+        flex-direction: column;
+        max-width: 100%;
+    }
+
+    #settings {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    #headertext {
+        font-size: 3.5rem;
+    }    
+}

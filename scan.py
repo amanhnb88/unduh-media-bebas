@@ -1,0 +1,185 @@
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from commentjson import load, dump # type: ignore
+from time import sleep as wait
+from requests import request
+from colors import colors
+from re import sub
+from time import time
+
+commit = "INDEV"
+user_agent = "Mozilla/5.0 (compatible; " + \
+    f"cobalt-instances/{commit}; +https://github.com/ihatespawn/instances" + \
+")"
+
+def get_instances() -> dict:
+    return load(open('data/instances.json'))[1:]
+
+# https://github.com/hyperdefined/CobaltTester/commit/06d49a2
+class Sanitize:
+    @staticmethod
+    def name(text) -> str:
+        return sub(r'[^A-z0-9-_/. ]', '', text)
+
+    @staticmethod
+    def version(text) -> str:
+        return sub(r'[^0-9.]', '', text)
+
+    @staticmethod
+    def branch(text) -> str:
+        return sub(r'[^A-z0-9/_-]', '', text)
+
+    @staticmethod
+    def commit(text) -> str:
+        return sub(r'[^a-z0-9]', '', text)
+
+def get_api_info(api_link) -> dict:
+    print(f"{colors.yellow}Doing a request to {api_link}")
+    req = request(
+        "get", api_link,
+            headers={
+            "User-Agent": user_agent
+        }
+    )
+    
+    if "Sorry, you have been blocked" in req.text:
+        raise Exception("We're blocked, mark it as offline.")
+    
+    server_info = req.json()
+    
+    version = server_info["version"]
+    branch = server_info["branch"]
+    commit = server_info["commit"]
+    name = server_info["name"]
+    cors = True if server_info["cors"] == 1 else False
+    
+    return {
+        "version": Sanitize.version(version),
+        "branch": Sanitize.branch(branch),
+        "commit": Sanitize.commit(commit),
+        "name": Sanitize.name(name),
+        "cors": cors
+    }
+
+def get_tests() -> dict:
+    return load(open('data/tests.json'))
+
+def frontend_online(frontend=None) -> bool:
+    if not frontend:
+        return False
+    
+    try:
+        # this falsely marks instances that don't
+        if "cobalt" in request("get", frontend).text:
+            return True
+    except:
+        return False
+
+def test_service(service, api, link) -> bool:
+    identifier = api.split("/")[2]
+    
+    start = time()
+    req = request(
+        "post", api,
+        headers = {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "User-Agent": user_agent
+        },
+        json = {
+            "url": link
+        }
+    )
+    end = time()
+    took = round(end - start, 2)
+    
+    if req.status_code == 200:
+        print(f"{colors.green}Service {service} works on {identifier}" + \
+            # coloring again to avoid the rest of the text being in white when greping 
+            f"{colors.green}, took {took}s.")
+        return True
+    else:
+        try:
+            error = req.json().get("text", "no error").split(".")[0]
+        except:
+            error = "no error"
+        
+        if "it requires an account to view" in error:
+            print(f"{colors.red}{identifier}{colors.red} didn't set up cookies for YouTube.")
+            return False
+            
+        print(f"{colors.red}Service {service} doesn't work on {identifier}" + \
+            # coloring again to avoid the rest of the text being in white when greping 
+            f"{colors.red}, status code: {req.status_code}, error: {error}")
+        return False
+
+def check_instance(instance) -> dict:
+    instance_info = {}
+    protocol = instance[0]
+    frontend = instance[1]
+    api = instance[2]
+    trust = instance[3]
+    
+    identifier = api or frontend or "a blank instance"   
+    missing = "protocol" if not protocol else \
+        "api domain" if not api else None
+    
+    if missing:
+        print(f"{colors.cyan}Skipping {identifier} because it doesn't have any {missing}.")
+        return
+    
+    api_link = f"{protocol}://{api}/api/serverInfo" if api else None
+    frontend_link = f"{protocol}://{frontend}" if frontend else None
+    is_frontend_online = frontend_online(frontend_link)
+    instance_info["protocol"] = protocol
+    instance_info["frontend"] = frontend
+    instance_info["api"] = api
+    instance_info["trust"] = trust
+    instance_info["online"] = {}
+    instance_info["services"] = {}
+    
+    try:
+        api_info = get_api_info(api_link)
+        instance_info["version"] = api_info["version"]
+        instance_info["branch"] = api_info["branch"]
+        instance_info["commit"] = api_info["commit"]
+        instance_info["name"] = api_info["name"]
+        instance_info["cors"] = api_info["cors"]
+        instance_info["online"]["api"] = True
+        instance_info["online"]["frontend"] = is_frontend_online
+        instance_info["score"] = 0
+    except:
+        print(f"{colors.red}{api} is offline or returned an invalid response, marking it as offline")
+        instance_info["online"]["api"] = True
+        instance_info["online"]["frontend"] = is_frontend_online
+        instance_info["score"] = -1
+        return instance_info
+    
+    api_link = api_link.replace("serverInfo", "json")
+    
+    tests = get_tests()
+    addscore = 1 / len(tests) * 100
+    for service, link in tests.items():
+        test_result = test_service(service, api_link, link)
+        instance_info["services"][service] = test_result
+        if test_result:
+            instance_info["score"] += addscore
+        wait(3) # to avoid getting rate limited
+    
+    instance_info["score"] = round(instance_info["score"])
+    
+    return instance_info
+
+def scan_instances():
+    instances = get_instances()
+    instance_list = []
+    with ThreadPoolExecutor(max_workers=100) as executor:
+        instancefuture = {executor.submit(check_instance, instance): instance for instance in instances}
+        
+        for future in as_completed(instancefuture):
+            instance_info = future.result()
+            if instance_info:
+                instance_list.append(instance_info)
+    dump(instance_list, open('output/instances.json', 'w'))
+
+if __name__ == "__main__":
+    scan_instances()
