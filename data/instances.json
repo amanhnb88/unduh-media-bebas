@@ -1,6 +1,6 @@
 [
     // "why are some instances not here?"
-    // they were really slow
+    // they were really slow or didn't work at all
     
     ["protocol", "frontend", "api", "trust"],
     ["https", "cobalt.tools", "api.cobalt.tools", 1],
