@@ -118,7 +118,8 @@ th {
     color: #B6FFD4;
 }
 
-.trust-1 {
+.trust-1,
+#warning {
     color: #FFB6B6 !important;
 }
 
