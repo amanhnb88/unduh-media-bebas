@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, send_from_directory
 from json import load
+from cache import cache_for
 
 commit = "COMMIT"
 app = Flask(__name__)
@@ -9,6 +10,7 @@ class Colors:
     yellow = ""
     red = ""
 
+@cache_for(30)
 def getinstances():
     return load(open('output/instances.json'))
 
