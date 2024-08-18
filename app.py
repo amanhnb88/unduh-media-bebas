@@ -33,4 +33,4 @@ def api():
 @app.route('/api/instances.json')
 @cache.cached(timeout=60 if not dev else 1)
 def api_instances():
-    return send_from_directory("output", "instances.json")
+    return getinstances(), 200, {'Content-Type': 'application/json'}
