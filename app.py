@@ -2,6 +2,9 @@ from flask import Flask, render_template, request, send_from_directory
 from json import load
 from cache import cache_for
 from flask_caching import Cache
+from threading import Thread
+from scan import scan_instances
+from os import mkdir
 
 dev = False # DON'T FORGET TO CHANGE IT BACK BEFORE COMMITING
 app = Flask(__name__)
@@ -15,7 +18,17 @@ class Colors:
 
 @cache_for(30)
 def getinstances():
-    return load(open('output/instances.json'))
+    try:
+        open('output/instances.json')
+    except FileNotFoundError:
+        # when there is no output/instances.json file, scan instances in the background
+        Thread(target=scan_instances).start()
+        try:
+            mkdir("output")
+        finally:
+            open('output/instances.json', 'w').write('{}')
+    finally:
+        return load(open('output/instances.json'))
 
 @app.route('/')
 @cache.cached(timeout=60 if not dev else 1)
