@@ -72,7 +72,6 @@
     
     ["https", "None", "api.snaptik.so", 0],
     ["https", "video.runapps.org", "video.runapps.org", 0],
-    ["https", "top1savetube.com", "api.top1savetube.com", -1],
     ["https", "None", "api.digi-follower.com", 0],
     ["https", "None", "dl01.spotifyloader.com", 0],
     ["https", "None", "apicloud2.filsfkwtlfjas.xyz", 0],
@@ -96,5 +95,6 @@
     ["https", "None", "cobalt5.aicover.ai", 0],
     ["https", "None", "api.cnvmp3.com", 0],
     ["https", "None", "api.quizmovies.com", 0],
-    ["https", "None", "api.sssyoutube.net", 0]
+    ["https", "None", "api.sssyoutube.net", 0],
+    ["https", "top1savetube.com", "api.top1savetube.com", -1]
 ]
