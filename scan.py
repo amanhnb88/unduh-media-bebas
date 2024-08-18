@@ -6,8 +6,15 @@ from colors import colors
 from re import sub
 from time import time
 from cache import cache_for
+from subprocess import run, DEVNULL
 
-commit = "INDEV"
+@cache_for(5)
+def get_commit() -> str:
+    return run("git rev-parse --short @".split(' '),
+        # https://stackoverflow.com/a/41172862/26767691
+        capture_output = True, text = True).stdout.removesuffix("\n")
+
+commit = get_commit
 user_agent = "Mozilla/5.0 (compatible; " + \
     f"cobalt-instances/{commit}; +https://github.com/ihatespawn/instances" + \
 ")"
