@@ -23,6 +23,8 @@
     ["https", "cobalt.alexagirl.studio", "cobalt-api.alexagirl.studio", 1],
     ["https", "co.kelig.me", "coapi.kelig.me", 0],
     ["https", "dl.haloz.at", "ca.haloz.at", 0],
+    ["https", "co.otomir23.me", "co.otomir23.me", 1],
+    ["https", "web.eepy.today", "co.eepy.today", 1],
     ["https", "nyc1.co.ggtyler.dev", "nyc1.coapi.ggtyler.dev", 1],
     ["https", "cal1.co.ggtyler.dev", "cal1.coapi.ggtyler.dev", 1],
     ["https", "par1.co.ggtyler.dev", "par1.coapi.ggtyler.dev", 1],
@@ -32,13 +34,9 @@
     ["https", "dl.miichelle.moe", "dlapi.miichelle.moe", 0],
     ["https", "d.seventyhost.net", "api.seventyhost.net", 0],
     ["https", "cobalt.tacohitbox.com", "api.cobalt.tacohitbox.com", 1],
-    ["https", "None", "api.snaptik.so", 0],
     ["https", "cobalt.stun.services", "cobalt-api.luver.pw", 0],
     ["https", "cob.tieren.men", "capi.tieren.men", 0],
-    ["https", "web.eepy.today", "co.eepy.today", 1],
     ["https", "cobalt-fi.schizo.city", "cobalt-fi.schizo.city", 1],
-    ["https", "co.otomir23.me", "co.otomir23.me", 1],
-    ["https", "None", "bot.codematter.am", 0],
     ["https", "dl.ixhby.dev", "api.dl.ixhby.dev", 0],
     ["https", "dl.memorybouquet.com", "dl-api.memorybouquet.com", 0],
     ["https", "md.sacreations.me", "api.sacreations.me", 0],
@@ -46,10 +44,8 @@
     // Sorry, you have been blocked; You are unable to access thetech.network
     // Service ___ doesn't work on api.cobalt.hoshinagi.top, status code: 504, error: no error
     ["https", "cobalt.witd.in", "api.cobalt.witd.in", 0],
-    ["http", "songfinderapi.ddns.net:9001", "songfinderapi.ddns.net:9000", 0],
     // Service Instagram doesn't work on api.down.vipvtt.cn, status code: 504, error: no error
     ["https", "cb.tigaultraman.com", "apicb.tigaultraman.com", 0],
-    ["https", "video.decrystalfan.app", "cobalt.decrystalfan.app", 0],
     ["http", "api.lcsq.top:9001", "api.lcsq.top:9000", 0],
     ["https", "None", "cobalt.misike.eu", 0],
     ["https", "cobalt.isnubi.fr", "api-cobalt.isnubi.fr", 0],
@@ -68,8 +64,13 @@
     ["http", "vidown.chensao.cc:9001", "vidown.chensao.cc:9000", 0],
     ["https", "pve.sily.cc:6004", "pve.sily.cc:6003", 0],
     ["https", "cobalt.yjasmine.com", "cobaltapi.yjasmine.com", 0],
+    ["http", "songfinderapi.ddns.net:9001", "songfinderapi.ddns.net:9000", 0],
+    ["https", "video.decrystalfan.app", "cobalt.decrystalfan.app", 0],
+
     ["https", "None", "media.miona.bot", 0],
+    ["https", "None", "bot.codematter.am", 0],
     
+    ["https", "None", "api.snaptik.so", 0],
     ["https", "video.runapps.org", "video.runapps.org", 0],
     ["https", "top1savetube.com", "api.top1savetube.com", -1],
     ["https", "None", "api.digi-follower.com", 0],
