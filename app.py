@@ -4,7 +4,6 @@ from cache import cache_for
 from flask_caching import Cache
 
 dev = False # DON'T FORGET TO CHANGE IT BACK BEFORE COMMITING
-commit = "COMMIT"
 app = Flask(__name__)
 app.config["CACHE_TYPE"] = "SimpleCache"
 cache = Cache(app)
