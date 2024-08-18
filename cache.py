@@ -5,7 +5,7 @@ def cache_for(seconds):
     def decorator(func):
         @lru_cache(maxsize=1)
         def wrapped_func(*args, **kwargs):
-            return func(*args, **kwargs), time.time()
+            return func(*args, **kwargs), time()
         
         def wrapper(*args, **kwargs):
             result, timestamp = wrapped_func(*args, **kwargs)
