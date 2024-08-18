@@ -9,7 +9,7 @@ def cache_for(seconds):
         
         def wrapper(*args, **kwargs):
             result, timestamp = wrapped_func(*args, **kwargs)
-            if time.time() - timestamp > seconds:
+            if time() - timestamp > seconds:
                 wrapped_func.cache_clear()
                 result, _ = wrapped_func(*args, **kwargs)
             return result
