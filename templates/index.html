@@ -18,11 +18,11 @@
             </div>
 
             <div class="checkbox">
-                <input type="checkbox" id="online"> <label for="online">only show online instances</label>
+                <input type="checkbox" id="online" checked> <label for="online">only show online instances</label>
             </div>
 
             <div class="checkbox">
-                <input type="checkbox" id="frontend"> <label for="frontend">only instances with frontend</label>
+                <input type="checkbox" id="frontend" checked> <label for="frontend">only instances with frontend</label>
             </div>
         </div>
         <table>
@@ -57,8 +57,12 @@
 
     <!-- option handling script -->
     <style id="safeOptionStyle"></style>
-    <style id="onlineOptionStyle"></style>
-    <style id="frontendOptionStyle"></style>
+    <style id="onlineOptionStyle">
+        .score-1 {display: none;}
+    </style>
+    <style id="frontendOptionStyle">
+        .frontendFalse {display: none;}
+    </style>
     <script>
         document.getElementById("safe").addEventListener("change", function() {
             if (this.checked) {
