@@ -5,6 +5,7 @@ from requests import request
 from colors import colors
 from re import sub
 from time import time
+from cache import cache_for
 
 commit = "INDEV"
 user_agent = "Mozilla/5.0 (compatible; " + \
@@ -60,6 +61,7 @@ def get_api_info(api_link) -> dict:
         "cors": cors
     }
 
+@cache_for(60)
 def get_tests() -> dict:
     return load(open('data/tests.json'))
 
