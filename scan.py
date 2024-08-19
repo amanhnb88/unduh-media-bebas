@@ -7,6 +7,7 @@ from re import sub
 from time import time
 from cache import cache_for
 from subprocess import run, DEVNULL
+from requests.exceptions import ReadTimeout
 
 @cache_for(5)
 def get_commit() -> str:
@@ -93,21 +94,35 @@ def frontend_online(frontend=None) -> bool:
 
 def test_service(service, api, link) -> bool:
     identifier = api.split("/")[2]
-
+    
+    if service.lower() == "soundcloud":
+        timeout = 30
+    else:
+        timeout = 90
+    
     start = time()
-    req = request(
-        "post", api,
-        headers = {
-            "Accept": "application/json",
-            "Content-Type": "application/json",
-            "User-Agent": user_agent
-        },
-        json = {
-            "url": link
-        }
-    )
-    end = time()
-    took = round(end - start, 2)
+    try:
+        req = request(
+            "post", api, timeout=timeout,
+            headers = {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "User-Agent": user_agent
+            },
+            json = {
+                "url": link
+            }
+        )
+        message = None
+    except ReadTimeout:
+        message = f"{colors.yellow}Service {service} timed out on {identifier}" + \
+            f"{colors.yellow}, took TIMEs."
+    finally:
+        end = time()
+        took = round(end - start, 2)
+        if message:
+            print(message.replace("TIME", str(took)))
+            return False
     
     if req.status_code == 200:
         print(f"{colors.green}Service {service} works on {identifier}" + \
