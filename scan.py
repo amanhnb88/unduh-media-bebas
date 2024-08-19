@@ -179,6 +179,7 @@ def check_instance(instance) -> dict:
     return instance_info
 
 def scan_instances():
+    start = time()
     instances = get_instances()
     instance_list = []
     with ThreadPoolExecutor(max_workers=100) as executor:
@@ -188,6 +189,8 @@ def scan_instances():
             instance_info = future.result()
             if instance_info:
                 instance_list.append(instance_info)
+    end = time()
+    print(f"{colors.cyan}Finished scanning, took {round(end - start, 2)}s")
     dump(instance_list, open('output/instances.json', 'w'))
 
 if __name__ == "__main__":
