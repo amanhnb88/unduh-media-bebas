@@ -33,7 +33,7 @@
     ["https", "cobalt.ayo.tf", "cobalt-api.ayo.tf", 0],
     ["https", "cobalt.minaev.su", "cobalt.minaev.su", 0],
     ["https", "dl.miichelle.moe", "dlapi.miichelle.moe", 0],
-    ["https", "d.seventyhost.net", "api.seventyhost.net", 0],
+    ["https", "d.seventyhost.net", "api.seventyhost.net", 1],
     // api.cobalt.tacohitbox.com is offline or returned an invalid response, marking it as offline
     ["https", "cobalt.stun.services", "cobalt-api.luver.pw", 0],
     ["https", "cob.tieren.men", "capi.tieren.men", 0],
