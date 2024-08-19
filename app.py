@@ -48,7 +48,7 @@ def api():
 def service(service):
     instances = getinstances()
     for instance in instances:
-        if instance['services'].get(service, False) == True:
+        if not instance["services"].get(service, False):
             instances.remove(instance)
     return render_template("service.html", service=service,
         instances=sorted(instances, key=lambda x: x['score'], reverse=True)
