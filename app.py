@@ -43,6 +43,17 @@ def index():
 def api():
     return render_template("api.html", domain=request.host_url.rstrip("/"))
 
+@app.route('/service/<service>')
+@cache.cached(timeout=60 if not dev else 1)
+def service(service):
+    instances = getinstances()
+    for instance in instances:
+        if not instance["services"].get(service, False):
+            instances.remove(instance)
+    return render_template("service.html", service=service,
+        instances=sorted(instances, key=lambda x: x['score'], reverse=True)
+    )
+
 @app.route('/api/instances.json')
 @cache.cached(timeout=60 if not dev else 1)
 def api_instances():

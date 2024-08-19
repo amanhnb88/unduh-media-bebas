@@ -1,0 +1,41 @@
+<div id="settings">
+    <div class="checkbox">
+        <input type="checkbox" id="safe"> <label for="safe">only show safe instances</label>
+    </div>
+
+    <div class="checkbox">
+        <input type="checkbox" id="online" checked> <label for="online">only show online instances</label>
+    </div>
+
+    <div class="checkbox">
+        <input type="checkbox" id="frontend" checked> <label for="frontend">only instances with frontend</label>
+    </div>
+</div>
+<table>
+    <tr>
+        <th>Frontend</th>
+        <th>API</th>
+        <th>Name</th>
+        <th>Score</th>
+    </tr>
+    {% for instance in instances %}
+    <tr class="trust{{ instance['trust'] }} score{{ instance['score'] }} frontend{{ instance['online']['frontend'] }}"">
+        <td>
+            {% if instance.get('frontend') != "None" %}
+            <a href="{{ instance['protocol'] }}://{{ instance['frontend'] }}">
+                {{ instance['frontend'] }}
+            </a>
+            {% else %}
+            -
+            {% endif %}
+        </td>
+        <td>
+            <a href="{{ instance['protocol'] }}://{{ instance['api'] }}/api/serverInfo">
+                {{ instance['api'] }}
+            </a>
+        </td>
+        <td>{{ instance.get('name', '-') }}</td>
+        <td>{{ instance['score'] }}%</td>
+    </tr>
+    {% endfor %}
+</table>
