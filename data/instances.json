@@ -50,7 +50,7 @@
     ["http", "api.lcsq.top:9001", "api.lcsq.top:9000", 0],
     // cobalt.misike.eu - Bad gateway
     ["https", "cobalt.isnubi.fr", "api-cobalt.isnubi.fr", 0],
-    ["https", "co.hep.gg", "dl.hep.gg", 0],
+    ["https", "co.hep.gg", "dl.hep.gg", 1],
     ["https", "cobalt.laidoulaile.icu", "cobaltapi.laidoulaile.icu", 0],
     // api.tubidi.buzz - Welcome to nginx!
     ["https", "co.vulpine.network", "co-api.vulpine.network", 0],
