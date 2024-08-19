@@ -93,13 +93,10 @@ def frontend_online(frontend=None) -> bool:
 
 def test_service(service, api, link) -> bool:
     identifier = api.split("/")[2]
-    
-    if service.lower() == "soundcloud":
-        timeout = 30
-    
+
     start = time()
     req = request(
-        "post", api, timeout=timeout or 180,
+        "post", api,
         headers = {
             "Accept": "application/json",
             "Content-Type": "application/json",
