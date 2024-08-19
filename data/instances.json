@@ -1,6 +1,7 @@
 [
     // "why are some instances not here?"
-    // they were really slow or didn't work at all
+    // they were really slow, didn't work at all or were chinese
+    // (most of stuff on these instances doesn't work)
     
     ["protocol", "frontend", "api", "trust"],
     ["https", "cobalt.tools", "api.cobalt.tools", 1],
@@ -96,5 +97,74 @@
     ["https", "None", "api.cnvmp3.com", 0],
     ["https", "None", "api.quizmovies.com", 0],
     ["https", "None", "api.sssyoutube.net", 0],
-    ["https", "top1savetube.com", "api.top1savetube.com", -1]
+    ["https", "top1savetube.com", "api.top1savetube.com", -1],
+    
+    ["http", "31.220.77.64:9001", "31.220.77.64:9000", 0],
+    ["http", "None", "2.56.214.74:9000", 0],
+    ["http", "None", "92.51.47.196:9000", 0],
+    ["http", "195.15.242.243:9001", "195.15.242.243:9000", 0],
+    ["http", "185.170.213.63:9001", "185.170.213.63:9000", 0],
+    ["http", "194.163.167.46:9001", "194.163.167.46:9000", 0],
+    ["http", "None", "109.71.246.24:9000", 0],
+    ["http", "13.213.191.84:9001", "13.213.191.84:9000", 0],
+    ["http", "148.135.96.148:9001", "148.135.96.148:9000", 0],
+    ["http", "93.127.202.159:9001", "93.127.202.159:9000", 0],
+    ["http", "None", "161.35.66.210:9000", 0],
+    // Service YouTube Music doesn't work on 119.91.251.51:9000, status code: 400, error: something went wrong when i tried getting info about your link, took 120.47s.
+    // Service YouTube Music doesn't work on 116.199.110.194:9000, status code: 400, error: something went wrong when i tried getting info about your link, took 120.49s.
+    ["http", "154.221.29.217:9001", "154.221.29.217:9000", 0],
+    ["http", "None", "149.102.135.144:9000", 0],
+    ["http", "None", "108.61.180.174:9000", 0],
+    ["http", "89.208.245.91:9001", "89.208.245.91:9000", 0],
+    ["http", "107.173.165.135:9001", "107.173.165.135:9000", 0],
+    ["http", "172.245.5.114:9001", "172.245.5.114:9000", 0],
+    ["http", "18.181.224.209:9001", "18.181.224.209:9000", 0],
+    ["http", "77.237.238.179:9001", "77.237.238.179:9000", 0],
+    ["http", "85.31.235.5:9001", "85.31.235.5:9000", 0],
+    ["http", "142.171.131.246:9001", "142.171.131.246:9000", 0],
+    // Service YouTube Music doesn't work on 159.75.120.46:19000, status code: 400, error: something went wrong when i tried getting info about your link, took 120.51s.
+    ["http", "None", "20.203.104.84:9001", 0],
+    ["http", "None", "86.195.21.136:8018", 0],
+    ["http", "66.112.209.209:9001", "66.112.209.209:9000", 0],
+    ["http", "38.148.249.53:9001", "38.148.249.53:9000", 0],
+    ["http", "74.48.82.224:9001", "74.48.82.224:9000", 0],
+    ["http", "128.140.36.48:9001", "128.140.36.48:9000", 0],
+    ["http", "176.169.191.51:9001", "176.169.191.51:9000", 0],
+    ["http", "None", "34.107.254.11", 0],
+    ["http", "152.70.197.156:9001", "152.70.197.156:9000", 0],
+    ["http", "None", "152.67.111.114:9000", 0],
+    ["http", "43.135.145.225:9001", "43.135.145.225:9000", 0],
+    ["http", "None", "185.196.117.66:9000", 0],
+    ["http", "None", "193.123.56.138:9000", 0],
+    ["http", "None", "157.173.195.144:9000", 0],
+    ["http", "107.175.136.189:9001", "107.175.136.189:9000", 0],
+    // Service YouTube doesn't work on 223.240.69.157:9002, status code: 400, error: something went wrong when i tried getting info about your link, took 120.43s.
+    ["http", "107.174.246.175:9001", "107.174.246.175:9000", 0],
+    ["http", "23.224.49.16:9001", "23.224.49.16:9000", 0],
+    ["http", "156.254.114.3:9001", "156.254.114.3:9000", 0],
+    ["http", "185.208.172.11:9001", "185.208.172.11:9000", 0],
+    ["http", "23.94.158.104:9001", "23.94.158.104:9000", 0],
+    ["http", "142.171.75.242:9001", "142.171.75.242:9000", 0],
+    ["http", "None", "188.225.31.27:9000", 0],
+    ["http", "None", "130.61.68.108:9000", 0],
+    ["http", "None", "54.253.121.98:9000", 0],
+    ["http", "147.78.247.244:9001", "147.78.247.244:9000", 0],
+    ["http", "None", "3.106.63.72:9000", 0],
+    // Service YouTube doesn't work on 47.94.89.239:9000, status code: 400, error: something went wrong when i tried getting info about your link, took 120.49s.
+    ["http", "None", "93.177.103.28:4444", 0],
+    ["http", "148.135.90.3:9001", "148.135.90.3:9000", 0],
+    ["http", "20.11.64.79:9001", "20.11.64.79:9000", 0],
+    ["http", "123.202.99.111:9001", "123.202.99.111:9000", 0],
+    ["http", "None", "192.248.189.244:30000", 0],
+    ["http", "None", "116.22.80.128:9090", 0],
+    // Service YouTube doesn't work on 8.138.101.232:9000, status code: 400, error: something went wrong when i tried getting info about your link, took 120.5s.
+    // Service YouTube doesn't work on 119.29.247.111:9000, status code: 400, error: something went wrong when i tried getting info about your link, took 120.46s.
+    ["http", "45.140.188.136:9001", "45.140.188.136:9000", 0],
+    ["http", "107.173.35.126:9001", "107.173.35.126:9000", 0],
+    ["http", "139.84.196.47:9001", "139.84.196.47:9000", 0],
+    // Service YouTube doesn't work on 43.143.164.67:9000, status code: 400, error: something went wrong when i tried getting info about your link, took 121.12s.
+    ["http", "23.94.218.146:9001", "23.94.218.146:9000", 0],
+    ["http", "45.95.234.29:9001", "45.95.234.29:9000", 0],
+    ["http", "None", "54.149.216.115:9000", 0],
+    ["http", "None", "147.45.111.84:9000", 0]
 ]
