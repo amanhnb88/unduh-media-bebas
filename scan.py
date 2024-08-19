@@ -176,8 +176,9 @@ def check_instance(instance) -> dict:
     tests = get_tests()
     addscore = 1 / len(tests) * 100
     for service, link in tests.items():
+        _service = service.lower().replace(" ", "_")
         test_result = test_service(service, api_link, link)
-        instance_info["services"][service] = test_result
+        instance_info["services"][_service] = test_result
         if test_result:
             instance_info["score"] += addscore
         wait(3) # to avoid getting rate limited
