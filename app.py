@@ -6,7 +6,7 @@ from threading import Thread
 from scan import scan_instances
 from os import mkdir
 
-dev = False # DON'T FORGET TO CHANGE IT BACK BEFORE COMMITING
+dev = True # DON'T FORGET TO CHANGE IT BACK BEFORE COMMITING
 app = Flask(__name__)
 app.config["CACHE_TYPE"] = "SimpleCache"
 cache = Cache(app)
@@ -42,6 +42,14 @@ def index():
 @cache.cached(timeout=120)
 def api():
     return render_template("api.html", domain=request.host_url.rstrip("/"))
+
+@app.route('/service/<service>')
+@cache.cached(timeout=60 if not dev else 1)
+def service(service):
+    instances = getinstances()
+    return render_template("service.html", service=service,
+        instances=sorted(instances, key=lambda x: x['score'], reverse=True)
+    )
 
 @app.route('/api/instances.json')
 @cache.cached(timeout=60 if not dev else 1)
