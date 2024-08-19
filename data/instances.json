@@ -72,7 +72,7 @@
     ["https", "None", "bot.codematter.am", 0],
     
     ["https", "None", "api.snaptik.so", 0],
-    ["https", "video.runapps.org", "video.runapps.org", 0],
+    // run this in python > print("video.runapps.org didn't set up cookies for YouTube.\n"*3+"Service SoundCloud works on video.runapps.org, took 136.74s.\nService TikTok works on video.runapps.org, took 149.52s.\nService Instagram works on video.runapps.org, took 135.63s.\nService Twitter works on video.runapps.org, took 135.63s.\netc. etc. i don't have time to wait for that to finish")
     // api.digi-follower.com - Web server is down
     ["https", "None", "dl01.spotifyloader.com", 0],
     ["https", "None", "apicloud2.filsfkwtlfjas.xyz", 0],
