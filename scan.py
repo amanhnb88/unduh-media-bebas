@@ -19,8 +19,16 @@ user_agent = "Mozilla/5.0 (compatible; " + \
     f"cobalt-instances/{commit}; +https://github.com/ihatespawn/instances" + \
 ")"
 
-def get_instances() -> dict:
+def get_instances() -> list:
     return load(open('data/instances.json'))[1:]
+
+def get_ignored_instances() -> list:
+    try:
+        open('data/ignored_instances')
+    except FileNotFoundError:
+        open('data/ignored_instances', 'w')
+    finally:
+        return open('data/ignored_instances').readlines()
 
 # https://github.com/hyperdefined/CobaltTester/commit/06d49a2
 class Sanitize:
@@ -182,6 +190,12 @@ def scan_instances():
     start = time()
     instances = get_instances()
     instance_list = []
+    ignored_instances = get_ignored_instances()
+    for _instance in instances:
+        instance = _instance[2]
+        if instance in ignored_instances:
+            instances.remove(_instance)  
+    
     with ThreadPoolExecutor(max_workers=100) as executor:
         instancefuture = {executor.submit(check_instance, instance): instance for instance in instances}
         

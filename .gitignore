@@ -27,3 +27,6 @@ desktop.ini
 .idea/
 *.swp
 *.swo
+
+# testing file
+test.py
