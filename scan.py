@@ -118,7 +118,7 @@ def test_service(service, api, link) -> bool:
             
         print(f"{colors.red}Service {service} doesn't work on {identifier}" + \
             # coloring again to avoid the rest of the text being in white when greping 
-            f"{colors.red}, status code: {req.status_code}, error: {error}")
+            f"{colors.red}, status code: {req.status_code}, error: {error}, took {took}s.")
         return False
 
 def check_instance(instance) -> dict:
