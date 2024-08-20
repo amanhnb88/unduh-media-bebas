@@ -88,8 +88,7 @@ def frontend_online(frontend=None) -> bool:
         return False
     
     try:
-        # this falsely marks instances that don't
-        if "cobalt" in request("get", frontend).text:
+        if '<input id="url-input-area"' in request("get", frontend).text:
             return True
     except:
         return False
