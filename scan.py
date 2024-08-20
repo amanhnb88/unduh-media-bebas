@@ -61,6 +61,8 @@ def get_api_info(api_link) -> dict:
     if "Sorry, you have been blocked" in req.text:
         raise Exception("We're blocked, mark it as offline.")
     
+    print(f"{colors.green}{api_link} works.")
+    
     server_info = req.json()
     
     version = server_info["version"]
