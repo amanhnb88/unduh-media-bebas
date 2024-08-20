@@ -58,3 +58,15 @@ def service(service):
 @cache.cached(timeout=60 if not dev else 1)
 def api_instances():
     return getinstances(), 200, {'Content-Type': 'application/json'}
+
+@app.route('/instance/<instanceapi>')
+@cache.cached(timeout=60 if not dev else 1)
+def instance(instanceapi):
+    instances = getinstances()
+    instance = {}
+    for _instance in instances:
+        if _instance['api'] == instanceapi:
+            instance = _instance
+    return render_template("instance.html",
+        instance=instance
+    )
