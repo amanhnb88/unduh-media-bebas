@@ -13,39 +13,5 @@
     <main style="display: flex;">
         {% include 'include/instance-table.html' %}
     </main>
-
-    <!-- option handling script -->
-    <style id="safeOptionStyle"></style>
-    <style id="onlineOptionStyle">
-        .score-1 {display: none;}
-    </style>
-    <style id="frontendOptionStyle">
-        .frontendFalse {display: none;}
-    </style>
-    <script>
-        document.getElementById("safe").addEventListener("change", function() {
-            if (this.checked) {
-                safeOptionStyle.innerText = ".trust0, .trust-1 {display: none;}"
-            } else {
-                safeOptionStyle.innerText = ""
-            }
-        });
-
-        document.getElementById("online").addEventListener("change", function() {
-            if (this.checked) {
-                onlineOptionStyle.innerText = ".score-1 {display: none;}"
-            } else {
-                onlineOptionStyle.innerText = ""
-            }
-        });
-
-        document.getElementById("frontend").addEventListener("change", function() {
-            if (this.checked) {
-                frontendOptionStyle.innerText = ".frontendFalse {display: none;}"
-            } else {
-                frontendOptionStyle.innerText = ""
-            }
-        });
-    </script>
 </body>
 </html>
