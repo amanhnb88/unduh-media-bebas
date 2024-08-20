@@ -1,0 +1,20 @@
+<table>
+    <tr>
+        <th>Service</th>
+        <th>Working?</th>
+    </tr>
+    {% for service, working in instance['services'].items() %}
+    <tr>
+        <td>
+            {{ service }}
+        </td>
+        <td>
+            {% if working == True %}
+            ✅
+            {% else %}
+            ❌
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
