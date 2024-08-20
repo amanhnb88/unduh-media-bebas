@@ -92,7 +92,7 @@ def frontend_online(frontend=None) -> bool:
     except:
         return False
 
-def test_service(service, api, link) -> bool:
+def test_service(service, api, link):
     identifier = api.split("/")[2]
     
     if service.lower() == "soundcloud":
@@ -137,7 +137,7 @@ def test_service(service, api, link) -> bool:
         
         if "it requires an account to view" in error:
             print(f"{colors.red}{identifier}{colors.red} didn't set up cookies for YouTube.")
-            return False
+            return None
             
         print(f"{colors.red}Service {service} doesn't work on {identifier}" + \
             # coloring again to avoid the rest of the text being in white when greping 
@@ -190,10 +190,16 @@ def check_instance(instance) -> dict:
     
     tests = get_tests()
     addscore = 1 / len(tests) * 100
+    youtubecookies = True
     for service, link in tests.items():
+        if not youtubecookies and "youtube" in service.lower():
+            continue
         _service = service.lower().replace(" ", "_")
         test_result = test_service(service, api_link, link)
         instance_info["services"][_service] = test_result
+        if test_result == None:
+            test_result = False
+            youtubecookies = False
         if test_result:
             instance_info["score"] += addscore
         wait(3) # to avoid getting rate limited
