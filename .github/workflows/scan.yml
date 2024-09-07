@@ -1,0 +1,12 @@
+name: scan instances every hour
+on:
+  schedule:
+    - cron: '0 * * * *'
+jobs:
+  build:
+    runs-on: self-hosted
+    steps:
+    - name: scan instances
+      run: |
+        cd ${{ env.path }}
+        py scan.py
