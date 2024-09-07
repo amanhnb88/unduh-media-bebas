@@ -94,13 +94,18 @@
     ["https", "None", "cobalt.aicover.ai", 0],
     ["https", "None", "cobalt2.aicover.ai", 0],
     ["https", "None", "cobalt5.aicover.ai", 0],
-    ["https", "None", "api.cnvmp3.com", -1],
-    ["https", "None", "api.cnvmp3.cc", -1],
-    ["https", "None", "apiv2.cnvmp3.cc", -1],
-    ["https", "None", "apiv3.cnvmp3.cc", -1],
-    ["https", "None", "api.quizmovies.com", -1],
     // api.sssyoutube.net- Web server is down
     ["https", "top1savetube.com", "api.top1savetube.com", -1],
+
+    ["https", "None", "api.cnvmp3.com", -1],
+    ["https", "None", "api.cnvmp3.cc", -1],
+    ["https", "None", "api.cnvmp3.me", -1],
+    ["https", "None", "api.cnvmp3.xyz", -1],
+    ["https", "None", "apiv2.cnvmp3.cc", -1],
+    ["https", "None", "apiv2.cnvmp3.xyz", -1],
+    ["https", "None", "apiv3.cnvmp3.cc", -1],
+    ["https", "None", "apiv3.cnvmp3.xyz", -1],
+    ["https", "None", "api.quizmovies.com", -1],
     
     ["http", "31.220.77.64:9001", "31.220.77.64:9000", 0],
     ["http", "None", "2.56.214.74:9000", 0],
