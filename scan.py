@@ -15,7 +15,7 @@ def get_commit() -> str:
         # https://stackoverflow.com/a/41172862/26767691
         capture_output = True, text = True).stdout.removesuffix("\n")
 
-commit = get_commit
+commit = get_commit()
 user_agent = "Mozilla/5.0 (compatible; " + \
     f"cobalt-instances/{commit}; +https://github.com/ihatespawn/instances" + \
 ")"
@@ -65,14 +65,21 @@ def get_api_info(api_link) -> dict:
     
     server_info = req.json()
     
-    version = server_info["version"]
-    branch = server_info["branch"]
-    commit = server_info["commit"]
-    name = server_info["name"]
-    cors = True if server_info["cors"] == 1 else False
+    version = server_info.get("version") or server_info.get("cobalt").get("version")
+    name = server_info.get("name", "None")
+
+    version_number = int(version.split(".")[0])
+    if version_number < 10: # version 7+
+        branch = server_info["branch"]
+        commit = server_info["commit"]
+    else: # version 10+
+        branch = server_info["git"]["branch"]
+        commit = server_info["git"]["commit"]
+    cors = True if server_info.get("cors", 0) == 1 else False
     
     return {
         "version": Sanitize.version(version),
+        "version_number": version_number,
         "branch": Sanitize.branch(branch),
         "commit": Sanitize.commit(commit),
         "name": Sanitize.name(name),
@@ -93,7 +100,7 @@ def frontend_online(frontend=None) -> bool:
     except:
         return False
 
-def test_service(service, api, link):
+def test_service(service, api, link, version):
     identifier = api.split("/")[2]
     
     if service.lower() == "soundcloud":
@@ -132,7 +139,11 @@ def test_service(service, api, link):
         return True
     else:
         try:
-            error = req.json().get("text", "no error").split(".")[0]
+            reqjson = req.json()
+            if version < 10:
+                error = reqjson.get("text", "no error").split(".")[0]
+            else:
+                error = reqjson.get("error", {"code": "no error"}).get("code", "no error")
         except:
             error = "no error"
         
@@ -180,14 +191,19 @@ def check_instance(instance) -> dict:
         instance_info["online"]["api"] = True
         instance_info["online"]["frontend"] = is_frontend_online
         instance_info["score"] = 0
-    except:
+        version = api_info["version_number"]
+    except Exception as e:
         print(f"{colors.red}{api} is offline or returned an invalid response, marking it as offline")
+        print(e)
         instance_info["online"]["api"] = True
         instance_info["online"]["frontend"] = is_frontend_online
         instance_info["score"] = -1
         return instance_info
     
-    api_link = api_link.replace("serverInfo", "json")
+    if version < 10:
+        api_link = api_link.replace("serverInfo", "json")
+    else:
+        api_link = f"{protocol}://{api}/"
     
     tests = get_tests()
     addscore = 1 / len(tests) * 100
@@ -196,7 +212,7 @@ def check_instance(instance) -> dict:
         if not youtubecookies and "youtube" in service.lower():
             continue
         _service = service.lower().replace(" ", "_")
-        test_result = test_service(service, api_link, link)
+        test_result = test_service(service, api_link, link, version)
         instance_info["services"][_service] = test_result
         if test_result == None:
             test_result = False
