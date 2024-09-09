@@ -8,5 +8,5 @@ jobs:
     steps:
     - name: scan instances
       run: |
-        cd ${{ env.path }}
-        py scan.py
+        cd ${{ env.DIRECTORY }}
+        python3 scan.py
