@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
     app:
         container_name: cobalt-instances
@@ -8,4 +6,4 @@ services:
         ports:
             - "5000:5000"
         volumes:
-            - .:/app
+            - ./output/instances.json:/app/output/instances.json
