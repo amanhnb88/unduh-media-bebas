@@ -110,7 +110,7 @@
     
     ["http", "31.220.77.64:9001", "31.220.77.64:9000", 0],
     ["http", "None", "2.56.214.74:9000", 0],
-    ["http", "None", "92.51.47.196:9000", 0],
+    // HTTPConnectionPool(host='92.51.47.196', port=9000): Max retries exceeded with url: /api/serverInfo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x7ffee829e390>, 'Connection to 92.51.47.196 timed out. (connect timeout=None)'))
     ["http", "195.15.242.243:9001", "195.15.242.243:9000", 0],
     ["http", "185.170.213.63:9001", "185.170.213.63:9000", 0],
     ["http", "194.163.167.46:9001", "194.163.167.46:9000", 0],
