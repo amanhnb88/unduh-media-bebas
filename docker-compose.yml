@@ -6,4 +6,5 @@ services:
         ports:
             - "5000:5000"
         volumes:
-            - ./output/instances.json:/app/output/instances.json
+            - ./data/:/app/data
+            - ./output/:/app/output
