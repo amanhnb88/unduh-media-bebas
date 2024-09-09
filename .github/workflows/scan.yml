@@ -1,7 +1,14 @@
-name: scan instances every hour
+name: scan instances
+
 on:
   schedule:
     - cron: '0 * * * *'
+  branches:
+    - main
+  paths:
+    - 'data/**'
+  workflow_dispatch:
+
 jobs:
   build:
     runs-on: self-hosted
