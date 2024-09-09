@@ -3,10 +3,12 @@ name: scan instances
 on:
   schedule:
     - cron: '0 * * * *'
-  branches:
-    - main
-  paths:
-    - 'data/**'
+  push:
+    branches:
+      - main
+    paths:
+      - 'data/**'
+      - 'scan.py'
   workflow_dispatch:
 
 jobs:
