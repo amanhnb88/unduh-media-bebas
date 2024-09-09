@@ -1,0 +1,21 @@
+name: update the website
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - name: check out this new code
+        uses: actions/checkout@v3
+        with:
+          path: ${{ env.DIRECTORY }}
+      - name: docker composure # and it calms you down with dancing fruit videos after docker compose (https://bsky.app/profile/wukko.me/post/3l35kbzmxxs24)
+        id: build
+        run: |
+          cd ${{ env.DIRECTORY }}
+          docker compose down --volumes
+          docker compose up --build -d
