@@ -128,6 +128,7 @@ def test_service(service, api, link, version):
     finally:
         end = time()
         took = round(end - start, 2)
+        message = message or ""
         if message:
             print(message.replace("TIME", str(took)))
             return False
