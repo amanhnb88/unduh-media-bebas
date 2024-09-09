@@ -10,9 +10,10 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: check out this new code
-        uses: actions/checkout@v3
-        with:
-          path: ${{ secrets.DIRECTORY }}
+        id: pull
+        run: |
+          cd ${{ secrets.DIRECTORY }}
+          git pull
       - name: docker composure # and it calms you down with dancing fruit videos after docker compose (https://bsky.app/profile/wukko.me/post/3l35kbzmxxs24)
         id: build
         run: |
