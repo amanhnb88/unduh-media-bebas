@@ -249,3 +249,4 @@ def scan_instances():
 
 if __name__ == "__main__":
     scan_instances()
+    exit(0)
