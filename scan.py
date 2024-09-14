@@ -5,11 +5,9 @@ from requests import request
 from colors import colors
 from re import sub
 from time import time
-from cache import cache_for
 from subprocess import run, DEVNULL
 from requests.exceptions import ReadTimeout
 
-@cache_for(5)
 def get_commit() -> str:
     return run("git rev-parse --short @".split(' '),
         # https://stackoverflow.com/a/41172862/26767691
@@ -84,7 +82,6 @@ def get_api_info(api_link) -> dict:
         "cors": cors
     }
 
-@cache_for(60)
 def get_tests() -> dict:
     return load(open('data/tests.json'))
 
