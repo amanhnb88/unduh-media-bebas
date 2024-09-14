@@ -9,6 +9,7 @@ on:
     paths:
       - 'data/**'
       - 'scan.py'
+      - '.gitea/workflows/scan.yml'
   workflow_dispatch:
 
 jobs:
