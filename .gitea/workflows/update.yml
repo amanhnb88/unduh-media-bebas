@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  deploy:
+  update:
     runs-on: self-hosted
     steps:
       - name: check out this new code
