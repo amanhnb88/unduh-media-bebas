@@ -18,5 +18,4 @@ jobs:
     - name: scan instances
       run: |
         cd ${{ secrets.DIRECTORY }}
-        python3 -m pip install commentjson --break-system-packages
         python3 scan.py
