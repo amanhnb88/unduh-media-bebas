@@ -1,8 +1,7 @@
 FROM python:3.12
 WORKDIR /app
 
-RUN apt-get install git && \
-    git clone https://github.com/ihatespawn/instances .
+COPY . /app
 
 RUN pip install --upgrade pip && \
     pip install commentjson flask requests \
