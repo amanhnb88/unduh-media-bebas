@@ -7,7 +7,8 @@
     ["https", "cobalt.tools", "api.cobalt.tools", 1],
     ["https", "cobalt.canine.tools", "cobalt.canine.tools", 1],
     ["https", "None", "beta.cobalt.canine.tools", 1],
-    ["https", "cobalt.kwiatekmiki.com", "cobalt.kwiatekmiki.com", 1],
+    ["https", "None", "cobalt.kwiatekmiki.com", 1],
+    ["https", "cobalt-7.kwiatekmiki.com", "cobalt-7.kwiatekmiki.com", 1],
     ["https", "co.enderman.ch", "cobalt.enderman.ch", 1], // Service SoundCloud doesn't work on cobalt.enderman.ch, status code: 504, error: no error
     ["https", "co.selfstacked.com", "coapi.selfstacked.com", 1],
     ["https", "co.rooot.gay", "api.co.rooot.gay", 1],
