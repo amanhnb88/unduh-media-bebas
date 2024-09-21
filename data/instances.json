@@ -25,7 +25,6 @@
     ["https", "cobalt.wither.ing", "cobalt.wither.ing", 1],
     // cobalt-api.alexagirl.studio is offline or returned an invalid response, marking it as offline
     // coapi.kelig.me is offline or returned an invalid response, marking it as offline
-    ["https", "dl.haloz.at", "ca.haloz.at", 0],
     ["https", "co.otomir23.me", "co.otomir23.me", 1],
     ["https", "web.eepy.today", "co.eepy.today", 1],
     ["https", "nyc1.co.ggtyler.dev", "nyc1.coapi.ggtyler.dev", 1],
