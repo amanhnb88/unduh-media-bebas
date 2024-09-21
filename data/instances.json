@@ -41,7 +41,6 @@
     ["https", "cobalt.xinchen.io", "api.cobalt.xinchen.io", 0],
     ["https", "None", "co.lzwz.me", 0],
     ["http", "vidown.chensao.cc:9001", "vidown.chensao.cc:9000", 0],
-    ["https", "pve.sily.cc:6004", "pve.sily.cc:6003", 0],
     ["https", "cobalt.yjasmine.com", "cobaltapi.yjasmine.com", 0],
     ["http", "songfinderapi.ddns.net:9001", "songfinderapi.ddns.net:9000", 0],
     ["https", "video.decrystalfan.app", "cobalt.decrystalfan.app", 0],
