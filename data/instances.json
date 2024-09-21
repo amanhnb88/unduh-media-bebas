@@ -67,6 +67,9 @@
     ["https", "cobalt.yjasmine.com", "cobaltapi.yjasmine.com", 0],
     ["http", "songfinderapi.ddns.net:9001", "songfinderapi.ddns.net:9000", 0],
     ["https", "video.decrystalfan.app", "cobalt.decrystalfan.app", 0],
+    ["https", "v.justinmad.com", "v.justinmad.com", 0],
+    ["https", "youtube.briddle.party", "api-youtube.briddle.party", 0],
+    ["http", "www.lingyunmu.site", "www.lingyunmu.site", 0],
 
     ["https", "None", "media.miona.bot", 0],
     ["https", "None", "bot.codematter.am", 0],
@@ -87,6 +90,7 @@
     ["https", "None", "dl03.yt-dl.click", 0],
     ["https", "None", "dl04.yt-dl.click", 0],
     // dl05.yt-dl.click is offline or returned an invalid response, marking it as offline
+    ["https", "None", "dl06.yt-dl.click", 0],
     // Service ___ doesn't work on node03.dlapi.app, status code: 400, error: invalid api key
     // Service ___ doesn't work on node02.dlapi.app, status code: 400, error: invalid api key
     // Service ___ doesn't work on node01.dlapi.app, status code: 400, error: invalid api key
