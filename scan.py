@@ -143,7 +143,7 @@ def test_service(service, api, link, version):
         except:
             error = "no error"
         
-        if "it requires an account to view" in error:
+        if "it requires an account to view" in error or error == "error.api.youtube.login":
             print(f"{colors.red}{identifier}{colors.red} didn't set up cookies for YouTube.")
             return None
             
