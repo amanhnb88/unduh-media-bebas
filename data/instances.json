@@ -2,7 +2,7 @@
     // "why are some instances not here?"
     // they were really slow, didn't work at all or were chinese
     // (most of stuff on these instances doesn't work)
-    
+
     ["protocol", "frontend", "api", "trust"],
     ["https", "cobalt.tools", "api.cobalt.tools", 1],
     ["https", "cobalt.canine.tools", "cobalt-backend.canine.tools", 1],
@@ -17,7 +17,6 @@
     ["https", "cobalt.timelessnesses.me", "cobalt.api.timelessnesses.me", 1],
     ["https", "co.cock.ceo", "api-cobalt.boykisser.systems", 1],
     ["https", "c.oak.li", "capi.oak.li", 1],
-    ["https", "co.tskau.team", "co.tskau.team", 1],
     ["https", "sea-download.stuff.solutions", "sea-downloadapi.stuff.solutions", 1],
     ["https", "cobalt.wither.ing", "cobalt.wither.ing", 1],
     ["https", "co.otomir23.me", "co.otomir23.me", 1],
@@ -25,12 +24,8 @@
     ["https", "nyc1.co.ggtyler.dev", "nyc1.coapi.ggtyler.dev", 1],
     ["https", "cal1.co.ggtyler.dev", "cal1.coapi.ggtyler.dev", 1],
     ["https", "cobalt.ayo.tf", "cobalt-api.ayo.tf", 0],
-    ["https", "cobalt.minaev.su", "cobalt.minaev.su", 0],
     ["https", "dl.miichelle.moe", "dlapi.miichelle.moe", 0],
     ["https", "d.seventyhost.net", "api.seventyhost.net", 1],
-    ["https", "cobalt.stun.services", "cobalt-api.luver.pw", 0],
-    ["https", "cob.tieren.men", "capi.tieren.men", 0],
-    ["https", "cobalt-fi.schizo.city", "cobalt-fi.schizo.city", 1],
     ["https", "dl.ixhby.dev", "api.dl.ixhby.dev", 0],
     ["https", "dl.memorybouquet.com", "dl-api.memorybouquet.com", 0],
     ["https", "md.sacreations.me", "api.sacreations.me", 0],
@@ -39,13 +34,11 @@
     ["https", "cb.tigaultraman.com", "apicb.tigaultraman.com", 0],
     ["http", "api.lcsq.top:9001", "api.lcsq.top:9000", 0],
     ["https", "cobalt.isnubi.fr", "api-cobalt.isnubi.fr", 0],
-    ["https", "co.hep.gg", "dl.hep.gg", 1],
     ["https", "cobalt.laidoulaile.icu", "cobaltapi.laidoulaile.icu", 0],
     ["https", "co.vulpine.network", "co-api.vulpine.network", 0],
     ["https", "None", "cobalt.yuntae.in", 0],
     ["https", "dl.polyg.online", "dl-api.polyg.online", 0],
     ["https", "cobalt.xinchen.io", "api.cobalt.xinchen.io", 0],
-    ["https", "dl.tan.my.id", "api-dl.tan.my.id", 0],
     ["https", "None", "co.lzwz.me", 0],
     ["http", "vidown.chensao.cc:9001", "vidown.chensao.cc:9000", 0],
     ["https", "pve.sily.cc:6004", "pve.sily.cc:6003", 0],
@@ -111,7 +104,6 @@
     ["http", "None", "86.195.21.136:8018", 0],
     ["http", "66.112.209.209:9001", "66.112.209.209:9000", 0],
     ["http", "38.148.249.53:9001", "38.148.249.53:9000", 0],
-    ["http", "176.169.191.51:9001", "176.169.191.51:9000", 0],
     ["http", "None", "34.107.254.11", 0],
     ["http", "152.70.197.156:9001", "152.70.197.156:9000", 0],
     ["http", "None", "152.67.111.114:9000", 0],
