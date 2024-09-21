@@ -221,6 +221,12 @@ def check_instance(instance) -> dict:
     
     return instance_info
 
+def test_instance(instance) -> dict | None:
+    try:
+        return check_instance(instance)
+    except Exception as e:
+        print(f"{colors.red}Checking {instance} failed: {str(e)}")
+
 def scan_instances():
     start = time()
     instances = get_instances()
@@ -232,7 +238,7 @@ def scan_instances():
             instances.remove(_instance)  
     
     with ThreadPoolExecutor(max_workers=100) as executor:
-        instancefuture = {executor.submit(check_instance, instance): instance for instance in instances}
+        instancefuture = {executor.submit(test_instance, instance): instance for instance in instances}
         
         for future in as_completed(instancefuture):
             instance_info = future.result()
