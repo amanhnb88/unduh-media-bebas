@@ -23,7 +23,6 @@ def lastmodifiedhour(path):
     timestruct = strptime(lastmodified)
     return strftime('%H:%M:%S', timestruct)
 
-@cache_for(30)
 def getinstances():
     try:
         open('output/instances.json')
@@ -40,7 +39,7 @@ def getinstances():
             lastmodifiedhour(instancefilepath)
 
 @app.route('/')
-@cache.cached(timeout=60 if not dev else 1)
+@cache.cached(timeout=30 if not dev else 1)
 def index():
     instances = getinstances()
     return render_template("index.html",
@@ -54,7 +53,7 @@ def api():
     return render_template("api.html", domain=request.host_url.rstrip("/"))
 
 @app.route('/service/<service>')
-@cache.cached(timeout=60 if not dev else 1)
+@cache.cached(timeout=30 if not dev else 1)
 def service(service):
     instances = getinstances()
     instancelist = instances[0]
@@ -67,12 +66,12 @@ def service(service):
     )
 
 @app.route('/api/instances.json')
-@cache.cached(timeout=60 if not dev else 1)
+@cache.cached(timeout=15 if not dev else 1)
 def api_instances():
     return getinstances()[0], 200, {'Content-Type': 'application/json'}
 
 @app.route('/instance/<instanceapi>')
-@cache.cached(timeout=60 if not dev else 1)
+@cache.cached(timeout=30 if not dev else 1)
 def instance(instanceapi):
     instances = getinstances()[0]
     instance = {}
