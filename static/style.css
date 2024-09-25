@@ -76,28 +76,6 @@ input:checked {
     border: .15rem solid rgb(225, 225, 225);
 }
 
-/*
-.selector-container {
-    display: flex;
-}
-
-.selector {
-    width: 100%;
-    color: #FFFFFF;
-    background-color: #000000;
-    border: none !important;
-    font-size: 20px;
-}
-
-https://stackoverflow.com/a/70272859/26767691
-select {
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    appearance: none;
-    background-image: none;
-}
-*/
-
 /**/
 
 table {
