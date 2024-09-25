@@ -10,8 +10,9 @@
         {% include 'include/header.html' %}
     </header>
     <span style="text-align: center;" id="warning">!! you should only use the instances below if you have problems with the official one (cobalt.tools) !!</span>
+    <p style="text-align: center; margin: 8px;" class="info">last updated: {{ lastmodified }}</p>
     <span style="text-align: center;" class="disabled">only showing instances that work with {{ service }}, for all instances, go <a href="/" style="text-decoration: underline;">here</a></span>
-    <p style="text-align: center;" class="disabled">meanings of colors: green: trusted and safe; yellow: not trusted but looks safe; red: not safe, avoid at all costs; gray: offline</p>
+    <p style="text-align: center; margin-top: 0px;" class="disabled">meanings of colors: green: trusted and safe; yellow: not trusted but looks safe; red: not safe, avoid at all costs; gray: offline</p>
     <main style="display: flex;">
         {% include 'include/instances-table.html' %}
     </main>

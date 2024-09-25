@@ -5,6 +5,8 @@ from flask_caching import Cache
 from threading import Thread
 from scan import scan_instances
 from os import mkdir
+from os.path import getmtime
+from time import ctime, strptime, strftime
 
 dev = False # DON'T FORGET TO CHANGE IT BACK BEFORE COMMITING
 app = Flask(__name__)
@@ -15,6 +17,11 @@ class Colors:
     green = ""
     yellow = ""
     red = ""
+
+def lastmodifiedhour(path):
+    lastmodified = ctime(getmtime(path))
+    timestruct = strptime(lastmodified)
+    return strftime('%H:%M:%S', timestruct)
 
 @cache_for(30)
 def getinstances():
@@ -28,14 +35,17 @@ def getinstances():
         finally:
             open('output/instances.json', 'w').write('{}')
     finally:
-        return load(open('output/instances.json'))
+        instancefilepath = 'output/instances.json'
+        return load(open(instancefilepath)), \
+            lastmodifiedhour(instancefilepath)
 
 @app.route('/')
 @cache.cached(timeout=60 if not dev else 1)
 def index():
     instances = getinstances()
     return render_template("index.html",
-        instances=sorted(instances, key=lambda x: x['score'], reverse=True)
+        instances=sorted(instances[0], key=lambda x: x['score'], reverse=True),
+        lastmodified=instances[1]
     )
 
 @app.route('/api')
@@ -47,22 +57,24 @@ def api():
 @cache.cached(timeout=60 if not dev else 1)
 def service(service):
     instances = getinstances()
-    for instance in instances:
+    instancelist = instances[0]
+    for instance in instancelist:
         if not instance["services"].get(service, False):
-            instances.remove(instance)
+            instancelist.remove(instance)
     return render_template("service.html", service=service,
-        instances=sorted(instances, key=lambda x: x['score'], reverse=True)
+        instances=sorted(instances, key=lambda x: x['score'], reverse=True),
+        lastmodified=instances[1]
     )
 
 @app.route('/api/instances.json')
 @cache.cached(timeout=60 if not dev else 1)
 def api_instances():
-    return getinstances(), 200, {'Content-Type': 'application/json'}
+    return getinstances()[0], 200, {'Content-Type': 'application/json'}
 
 @app.route('/instance/<instanceapi>')
 @cache.cached(timeout=60 if not dev else 1)
 def instance(instanceapi):
-    instances = getinstances()
+    instances = getinstances()[0]
     instance = {}
     for _instance in instances:
         if _instance['api'] == instanceapi:
