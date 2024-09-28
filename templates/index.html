@@ -17,37 +17,50 @@
     </main>
 
     <!-- option handling script -->
-    <style id="safeOptionStyle"></style>
-    <style id="onlineOptionStyle">
-        .score-1 {display: none;}
-    </style>
-    <style id="frontendOptionStyle">
-        .frontendFalse {display: none;}
-    </style>
+    <div id="optionstuff"></div>
+
     <script>
-        document.getElementById("safe").addEventListener("change", function() {
-            if (this.checked) {
-                safeOptionStyle.innerText = ".trust0, .trust-1 {display: none;}"
-            } else {
-                safeOptionStyle.innerText = ""
-            }
-        });
+        classes = {
+            "safe": ".trust0, .trust-1",
+            "online": ".score-1",
+            "frontend": ".frontendFalse"
+        }
 
-        document.getElementById("online").addEventListener("change", function() {
-            if (this.checked) {
-                onlineOptionStyle.innerText = ".score-1 {display: none;}"
-            } else {
-                onlineOptionStyle.innerText = ""
-            }
-        });
+        function createStyle(option) {
+            const style = document.createElement("style");
+            style.id = option + "style";
+            document.querySelector("#optionstuff").appendChild(style);
+            return document.querySelector(`#${option}style`);
+        }
 
-        document.getElementById("frontend").addEventListener("change", function() {
-            if (this.checked) {
-                frontendOptionStyle.innerText = ".frontendFalse {display: none;}"
-            } else {
-                frontendOptionStyle.innerText = ""
+        function handleOption(option, checked, classestohide) {
+            let optionstyle;
+            optionstyle = document.querySelector(`#${option}style`);
+            if (!optionstyle) {
+                optionstyle = createStyle(option);
             }
-        });
+
+            if (checked) {
+                optionstyle.innerText = `${classestohide} { display: none; }`;
+            } else {
+                optionstyle.innerText = "";
+            }
+        }
+
+        function updateOption(option) {
+            const checkbox = document.getElementById(option);
+            handleOption(option, checkbox.checked, classes[option])
+        }
+
+        document.querySelectorAll("#settings > * label").forEach((label) => {
+            const setting = label.getAttribute("for");
+            const checkbox = document.getElementById(setting);
+
+            updateOption(setting);
+            checkbox.addEventListener("change", function() {
+                updateOption(this.id)
+            })
+        })
     </script>
 </body>
 </html>
