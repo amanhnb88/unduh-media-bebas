@@ -3,7 +3,7 @@ from commentjson import load, dump # type: ignore
 from time import sleep as wait
 from requests import request
 from colors import colors
-from re import sub
+from re import sub, search
 from time import time
 from subprocess import run, DEVNULL
 from requests.exceptions import ReadTimeout
@@ -15,6 +15,9 @@ def get_commit() -> str:
 
 commit = get_commit()
 user_agent = f"cobalt-instances/{commit} (+https://codeberg.org/kwiat/instances)"
+
+a = "([0-1][0-9]{0,2}|2[0-4][0-9]|25[0-5])"
+ipregex = f"^({a}\.){{3}}{a}$"
 
 def get_instances() -> list:
     return load(open('data/instances.json'))[1:]
@@ -189,6 +192,7 @@ def check_instance(instance) -> dict:
     instance_info["trust"] = trust
     instance_info["online"] = {}
     instance_info["services"] = {}
+    instance_info["nodomain"] = bool(search(ipregex, api))
     
     try:
         api_info = get_api_info(api_link)

@@ -10,6 +10,10 @@
     <div class="checkbox">
         <input type="checkbox" id="frontend" checked> <label for="frontend">only instances with frontend</label>
     </div>
+
+    <div class="checkbox">
+        <input type="checkbox" id="domainonly" checked> <label for="domainonly">only instances a domain</label>
+    </div>
 </div>
 <table>
     <tr>
@@ -20,7 +24,7 @@
         <th>Version</th>
     </tr>
     {% for instance in instances %}
-    <tr class="trust{{ instance['trust'] }} score{{ instance['score'] }} frontend{{ instance['online']['frontend'] }}">
+    <tr class="trust{{ instance['trust'] }} score{{ instance['score'] }} frontend{{ instance['online']['frontend'] }} nodomain{{ instance['nodomain'] }}">
         <td>
             {% if instance.get('frontend') != "None" %}
             <a href="{{ instance['protocol'] }}://{{ instance['frontend'] }}">
