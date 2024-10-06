@@ -12,6 +12,7 @@ dev = False # DON'T FORGET TO CHANGE IT BACK BEFORE COMMITING
 app = Flask(__name__)
 app.config["CACHE_TYPE"] = "SimpleCache"
 cache = Cache(app)
+cache.clear()
 
 class Colors:
     green = ""
