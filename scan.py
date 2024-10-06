@@ -14,7 +14,7 @@ def get_commit() -> str:
         capture_output = True, text = True).stdout.removesuffix("\n")
 
 commit = get_commit()
-user_agent = f"cobalt-instances/{commit} (+https://github.com/ihatespawn/instances)"
+user_agent = f"cobalt-instances/{commit} (+https://codeberg.org/kwiat/instances)"
 
 def get_instances() -> list:
     return load(open('data/instances.json'))[1:]
