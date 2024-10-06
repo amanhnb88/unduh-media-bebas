@@ -112,6 +112,7 @@ def test_service(service, api, link, version):
         timeout = 90
     
     start = time()
+    message = ""
     try:
         api_key = api_keys.get(identifier)
         headers = {
@@ -130,14 +131,12 @@ def test_service(service, api, link, version):
                 "url": link
             }
         )
-        message = None
     except ReadTimeout:
         message = f"{colors.yellow}Service {service} timed out on {identifier}" + \
             f"{colors.yellow}, took TIMEs."
     finally:
         end = time()
         took = round(end - start, 2)
-        message = message or ""
         if message:
             print(message.replace("TIME", str(took)))
             return False
