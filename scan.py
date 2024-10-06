@@ -19,6 +19,14 @@ user_agent = f"cobalt-instances/{commit} (+https://github.com/ihatespawn/instanc
 def get_instances() -> list:
     return load(open('data/instances.json'))[1:]
 
+def get_api_keys() -> list:
+    try:
+        return load(open('data/instances.json'))[1:]
+    except:
+        return {}
+
+api_keys = get_api_keys()
+
 def get_ignored_instances() -> list:
     try:
         open('data/ignored_instances')
@@ -105,13 +113,19 @@ def test_service(service, api, link, version):
     
     start = time()
     try:
+        api_key = api_keys.get(identifier)
+        headers = {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "User-Agent": user_agent
+        }
+
+        if api_key:
+            headers["Authorization"] = f"Api-key {api_key}"
+        
         req = request(
             "post", api, timeout=timeout,
-            headers = {
-                "Accept": "application/json",
-                "Content-Type": "application/json",
-                "User-Agent": user_agent
-            },
+            headers = headers,
             json = {
                 "url": link
             }
