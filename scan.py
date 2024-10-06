@@ -239,7 +239,7 @@ def test_instance(instance) -> dict | None:
     try:
         return check_instance(instance)
     except Exception as e:
-        print(f"{colors.red}Checking {instance} failed: {str(e)}")
+        print(f"{colors.red}Checking {instance[2]} failed: {str(e)}")
 
 def scan_instances():
     start = time()
