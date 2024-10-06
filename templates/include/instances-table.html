@@ -17,6 +17,7 @@
         <th>API</th>
         <th>Name</th>
         <th>Score</th>
+        <th>Version</th>
     </tr>
     {% for instance in instances %}
     <tr class="trust{{ instance['trust'] }} score{{ instance['score'] }} frontend{{ instance['online']['frontend'] }}"">
@@ -40,6 +41,7 @@
                 {{ instance['score'] }}%
             </a>
         </td>
+        <td>{{ instance.get('version', 'unknown') }}</td>
     </tr>
     {% endfor %}
 </table>
