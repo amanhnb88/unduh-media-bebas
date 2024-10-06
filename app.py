@@ -71,6 +71,11 @@ def service(service):
 def api_instances():
     return getinstances()[0], 200, {'Content-Type': 'application/json'}
 
+@app.route('/api/lastupdated')
+@cache.cached(timeout=15 if not dev else 1)
+def api_lastupdated():
+    return getinstances()[1]
+
 @app.route('/instance/<instanceapi>')
 @cache.cached(timeout=30 if not dev else 1)
 def instance(instanceapi):
