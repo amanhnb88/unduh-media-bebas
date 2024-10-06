@@ -228,7 +228,7 @@ def check_instance(instance) -> dict:
             youtubecookies = False
         if test_result:
             instance_info["score"] += addscore
-        wait(3) # to avoid getting rate limited
+        wait(5) # to avoid getting rate limited
     
     instance_info["score"] = round(instance_info["score"])
     
