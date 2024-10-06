@@ -20,7 +20,7 @@
         <th>Version</th>
     </tr>
     {% for instance in instances %}
-    <tr class="trust{{ instance['trust'] }} score{{ instance['score'] }} frontend{{ instance['online']['frontend'] }}"">
+    <tr class="trust{{ instance['trust'] }} score{{ instance['score'] }} frontend{{ instance['online']['frontend'] }}">
         <td>
             {% if instance.get('frontend') != "None" %}
             <a href="{{ instance['protocol'] }}://{{ instance['frontend'] }}">
