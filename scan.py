@@ -19,9 +19,9 @@ user_agent = f"cobalt-instances/{commit} (+https://github.com/ihatespawn/instanc
 def get_instances() -> list:
     return load(open('data/instances.json'))[1:]
 
-def get_api_keys() -> list:
+def get_api_keys() -> dict:
     try:
-        return load(open('data/instances.json'))[1:]
+        return load(open('data/api_keys.json'))
     except:
         return {}
 
