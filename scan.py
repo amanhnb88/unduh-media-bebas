@@ -98,7 +98,7 @@ def frontend_online(frontend=None) -> bool:
         return False
     
     try:
-        if '<input id="url-input-area"' in request("get", frontend).text:
+        if '<input id="url-input-area"' in request("get", frontend, timeout=10).text:
             return True
     except:
         return False
