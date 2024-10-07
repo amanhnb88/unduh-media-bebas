@@ -1,0 +1,19 @@
+name: Feature request
+about: Request a feature to be added
+labels: ["Kind/Feature"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: What do you want to be added?
+      placeholder: The website should be doing 3d spins on hover
+    validations:
+      required: true
+  - type: checkboxes
+    id: duplicates
+    attributes:
+      label: Did you check if someone has already requested this?
+      description: If not, just open [the issues page](https://codeberg.org/kwiat/instances/issues) in a new tab and search for any possibly related keywords.
+      options:
+        - label: I have checked for duplicates and no one else has already requested this.
+          required: true
