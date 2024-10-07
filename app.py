@@ -94,8 +94,10 @@ def instance(instanceapi):
     )
 
 if __name__ == "__main__":
-    print(f"{colors.yellow}WARN: You have started this program in the dev mode.")
-    print(f"{colors.yellow}To run it normally, do `flask run`.{colors.reset}")
+    print(f"{colors.yellow}WARN: You have started this program in developer mode,")
+    print(f"{colors.yellow}      which means that the website contents aren't cached")
+    print(f"{colors.yellow}      and debugging is enabled, which could be dangerous.")
+    print(f"{colors.yellow}      To run this normally, simply do `flask run`.{colors.reset}")
     logger.setLevel(logging.NOTSET)
     dev = True
     app.run(debug=True)
