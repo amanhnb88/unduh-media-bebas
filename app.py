@@ -7,12 +7,16 @@ from scan import scan_instances
 from os import mkdir
 from os.path import getmtime
 from time import ctime, strptime, strftime
+import logging
 
 dev = False # DON'T FORGET TO CHANGE IT BACK BEFORE COMMITING
 app = Flask(__name__)
 app.config["CACHE_TYPE"] = "SimpleCache"
 cache = Cache(app)
 cache.clear()
+
+logger = logging.getLogger('werkzeug')
+logger.setLevel(logging.WARNING)
 
 class Colors:
     green = ""
