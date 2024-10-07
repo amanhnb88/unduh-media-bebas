@@ -7,9 +7,10 @@ from scan import scan_instances
 from os import mkdir
 from os.path import getmtime
 from time import ctime, strptime, strftime
+from colors import colors
 import logging
 
-dev = False # DON'T FORGET TO CHANGE IT BACK BEFORE COMMITING
+dev = False
 app = Flask(__name__)
 app.config["CACHE_TYPE"] = "SimpleCache"
 cache = Cache(app)
@@ -91,3 +92,10 @@ def instance(instanceapi):
     return render_template("instance.html",
         instance=instance
     )
+
+if __name__ == "__main__":
+    print(f"{colors.yellow}WARN: You have started this program in the dev mode.")
+    print(f"{colors.yellow}To run it normally, do `flask run`.{colors.reset}")
+    logger.setLevel(logging.NOTSET)
+    dev = True
+    app.run(debug=True)
