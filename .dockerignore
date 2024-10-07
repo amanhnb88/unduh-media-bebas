@@ -1,0 +1,8 @@
+*.md
+*.yml
+LICENSE
+Dockerfile
+.gitea
+
+# not in the repo rn but can be added at any time
+*.png
