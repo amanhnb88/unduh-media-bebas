@@ -1,0 +1,18 @@
+name: Enhancement suggestion
+about: Suggest an enhancement
+labels: ["Kind/Enhancement"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: What do you want to be enhanced?
+    validations:
+      required: true
+  - type: checkboxes
+    id: duplicates
+    attributes:
+      label: Did you check if someone has already suggested this?
+      description: If not, just open [the issues page](https://codeberg.org/kwiat/instances/issues) in a new tab and search for any possibly related keywords.
+      options:
+        - label: I have checked for duplicates and no one else has already suggested this.
+          required: true
