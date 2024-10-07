@@ -67,7 +67,7 @@ def service(service):
         if not instance["services"].get(service, False):
             instancelist.remove(instance)
     return render_template("service.html", service=service,
-        instances=sorted(instances, key=lambda x: x['score'], reverse=True),
+        instances=sorted(instances[0], key=lambda x: x['score'], reverse=True),
         lastmodified=instances[1]
     )
 
