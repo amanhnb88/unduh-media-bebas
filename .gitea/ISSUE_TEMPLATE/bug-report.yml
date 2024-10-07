@@ -10,6 +10,20 @@ body:
     validations:
       required: true
   - type: textarea
+    id: excepted
+    attributes:
+      label: Excepted result
+      description: What was supposed to happen?
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual result
+      description: What actually happened?
+    validations:
+      required: true
+  - type: textarea
     id: reproducing
     attributes:
       label: How to reproduce
