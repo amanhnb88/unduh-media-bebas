@@ -44,6 +44,7 @@
 
     ["https", "None", "bot.codematter.am", 0],
     
+    ["https", "top1savetube.com", "api.top1savetube.com", -1],
     ["https", "None", "api.snaptik.so", 0],
     ["https", "None", "apicloud3.filsfkwtlfjas.xyz", 0],
     ["https", "None", "apicloud4.filsfkwtlfjas.xyz", 0],
@@ -53,7 +54,6 @@
     ["https", "None", "cobalt.aicover.ai", 0],
     ["https", "None", "cobalt2.aicover.ai", 0],
     ["https", "None", "cobalt5.aicover.ai", 0],
-    ["https", "top1savetube.com", "api.top1savetube.com", -1],
 
     ["https", "None", "api.cnvmp3.com", -1],
     ["https", "None", "api.cnvmp3.cc", -1],
@@ -91,7 +91,6 @@
     ["http", "43.135.145.225:9001", "43.135.145.225:9000", 0],
     ["http", "None", "193.123.56.138:9000", 0],
     ["http", "107.174.246.175:9001", "107.174.246.175:9000", 0],
-    ["http", "156.254.114.3:9001", "156.254.114.3:9000", 0],
     ["http", "185.208.172.11:9001", "185.208.172.11:9000", 0],
     ["http", "23.94.158.104:9001", "23.94.158.104:9000", 0],
     ["http", "142.171.75.242:9001", "142.171.75.242:9000", 0],
@@ -99,7 +98,6 @@
     ["http", "147.78.247.244:9001", "147.78.247.244:9000", 0],
     ["http", "None", "3.106.63.72:9000", 0],
     ["http", "148.135.90.3:9001", "148.135.90.3:9000", 0],
-    ["http", "20.11.64.79:9001", "20.11.64.79:9000", 0],
     ["http", "123.202.99.111:9001", "123.202.99.111:9000", 0],
     ["http", "None", "192.248.189.244:30000", 0]
 ]
