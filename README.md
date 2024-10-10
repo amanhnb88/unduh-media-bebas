@@ -26,9 +26,9 @@ that depends on how you want to do it, here are 3 ways of doing that
 1. [install docker](https://www.docker.com/get-started/) and [git](./CONTRIBUTING.md#git)
 2. [clone the repository](./CONTRIBUTING.md#cloning)
 3. run `docker compose up`, or:
-   - `docker compose up -d` to run in the background
-   - `docker compose up --build` to rebuild before running <br>
-     (useful for developing but i recommend doing [this](./CONTRIBUTING.md#testing-your-changes) instead)
+    - `docker compose up -d` to run it in the background
+    - `docker compose up --build` to rebuild the image before running <br>
+    (useful for developing but i recommend doing [this](./CONTRIBUTING.md#testing-your-changes) instead)
 
 ### python
 1. [install python](https://www.python.org/downloads/) and [git](./CONTRIBUTING.md#git)
