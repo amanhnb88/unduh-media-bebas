@@ -79,10 +79,11 @@ def get_api_info(api_link) -> dict:
     if version_number < 10: # version 7+
         branch = server_info["branch"]
         commit = server_info["commit"]
+        cors = True if server_info.get("cors", 0) == 1 else False
     else: # version 10+
         branch = server_info["git"]["branch"]
         commit = server_info["git"]["commit"]
-    cors = True if server_info.get("cors", 0) == 1 else False
+        cors = True if req.headers.get("access-control-allow-origin") == "*" else False
     
     return {
         "version": Sanitize.version(version),
