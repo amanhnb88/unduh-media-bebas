@@ -19,6 +19,26 @@ fun fact: there is a whole channel dedicated to reporting websites that violate 
 
 if you're active in cobalt's community (on github or discord) and we trust you enough to not do the things listed above, your instance is probably going to be marked as safe.
 
+## how to run
+that depends on how you want to do it, here are 3 ways of doing that
+
+### docker (recommended)
+1. [install docker](https://www.docker.com/get-started/) and [git](./CONTRIBUTING.md#git)
+2. [clone the repository](./CONTRIBUTING.md#cloning)
+3. run `docker compose up`, or:
+   - `docker compose up -d` to run in the background
+   - `docker compose up --build` to rebuild before running <br>
+     (useful for developing but i recommend doing [this](./CONTRIBUTING.md#testing-your-changes) instead)
+
+### python
+1. [install python](https://www.python.org/downloads/) and [git](./CONTRIBUTING.md#git)
+2. [clone the repository](./CONTRIBUTING.md#cloning)
+3. install dependencies using `pip install -r requirements.txt`
+4. run `flask run`
+
+### for testing changes
+[it's explained here](./CONTRIBUTING.md#testing-your-changes)
+
 ## why?
 before this instance list was created, [hyperdefined](https://hyper.lol) created [his own instance list](https://instances.hyper.lol), but the longer it exists the more it gets harder to use and overwhelming.
 
