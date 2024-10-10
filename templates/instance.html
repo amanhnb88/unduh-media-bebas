@@ -9,7 +9,10 @@
     <header>
         {% include 'include/header.html' %}
     </header>
-    <p style="text-align: center; font-size: 24px;" class="disabled">instance: {{ instance['api'] }}</p>
+    <p style="text-align: center; font-size: 16px;" class="disabled">instance: {{ instance['api'] }}</p>
+    {% if instance['trust'] == -1 %}
+    <p style="text-align: center; margin-top: 0;" id="warning">!! this instance is known to be not safe, please proceed with caution !!</p>
+    {% endif %}
     <main style="display: flex;">
         {% include 'include/instance-table.html' %}
     </main>
