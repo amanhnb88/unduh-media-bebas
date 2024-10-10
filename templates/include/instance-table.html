@@ -8,13 +8,15 @@
         <td>
             {{ service }}
         </td>
+        {% if working == True %}
         <td>
-            {% if working == True %}
             ✅
-            {% else %}
-            ❌
-            {% endif %}
         </td>
+        {% else %}
+        <td title="{{ working }}">
+            ❌
+        </td>
+        {% endif %}
     </tr>
     {% endfor %}
 </table>

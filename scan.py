@@ -142,7 +142,7 @@ def test_service(service, api, link, version):
         took = round(end - start, 2)
         if message:
             print(message.replace("TIME", str(took)))
-            return False
+            return "request timed out"
     
     if req.status_code == 200:
         print(f"{colors.green}Service {service} works on {identifier}" + \
@@ -158,15 +158,11 @@ def test_service(service, api, link, version):
                 error = reqjson.get("error", {"code": "no error"}).get("code", "no error")
         except:
             error = "no error"
-        
-        if "it requires an account to view" in error or error == "error.api.youtube.login":
-            print(f"{colors.red}{identifier}{colors.red} didn't set up cookies for YouTube.")
-            return None
             
         print(f"{colors.red}Service {service} doesn't work on {identifier}" + \
             # coloring again to avoid the rest of the text being in white when greping 
             f"{colors.red}, status code: {req.status_code}, error: {error}, took {took}s.")
-        return False
+        return error
 
 def check_instance(instance) -> dict:
     instance_info = {}
@@ -221,17 +217,27 @@ def check_instance(instance) -> dict:
     tests = get_tests()
     addscore = 1 / len(tests) * 100
     youtubecookies = True
+
     for service, link in tests.items():
-        if not youtubecookies and "youtube" in service.lower():
-            continue
         _service = service.lower().replace(" ", "_")
+
+        if not youtubecookies and "youtube" in service.lower():
+            print(f"{colors.red}{identifier}{colors.red} didn't set up cookies for YouTube, skipping other YouTube tests.")
+            instance_info["services"][_service] = "youtube cookies aren't set up"
+            continue
+
         test_result = test_service(service, api_link, link, version)
-        instance_info["services"][_service] = test_result
-        if test_result == None:
-            test_result = False
+        str_test_result = str(test_result)
+
+        if "it requires an account" in str_test_result or str_test_result == "error.api.youtube.login":
+            print(f"{colors.red}{identifier}{colors.red} didn't set up cookies for YouTube.")
+            test_result = "youtube cookies aren't set up"
             youtubecookies = False
-        if test_result:
+        
+        if test_result == True:
             instance_info["score"] += addscore
+
+        instance_info["services"][_service] = test_result
         wait(5) # to avoid getting rate limited
     
     instance_info["score"] = round(instance_info["score"])
