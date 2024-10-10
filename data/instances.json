@@ -52,7 +52,6 @@
     ["https", "None", "apicloud8.filsfkwtlfjas.xyz", 0],
     ["https", "None", "apicloud9.filsfkwtlfjas.xyz", 0],
     ["https", "None", "cobalt.aicover.ai", 0],
-    ["https", "None", "cobalt2.aicover.ai", 0],
     ["https", "None", "cobalt5.aicover.ai", 0],
 
     ["https", "None", "api.cnvmp3.com", -1],
@@ -65,7 +64,6 @@
     ["https", "None", "apiv3.cnvmp3.xyz", -1],
     ["https", "None", "api.quizmovies.com", -1],
     
-    ["http", "31.220.77.64:9001", "31.220.77.64:9000", 0],
     ["http", "None", "2.56.214.74:9000", 0],
     ["http", "195.15.242.243:9001", "195.15.242.243:9000", 0],
     ["http", "None", "109.71.246.24:9000", 0],
