@@ -16,8 +16,8 @@ def get_commit() -> str:
 commit = get_commit()
 user_agent = f"cobalt-instances/{commit} (+https://codeberg.org/kwiat/instances)"
 
-a = "([0-1][0-9]{0,2}|2[0-4][0-9]|25[0-5])"
-ipregex = f"^({a}\.){{3}}{a}$"
+a = "([0-1]?[0-9]{0,2}|2[0-4][0-9]|25[0-5])"
+ipregex = f"^({a}\.){{3}}{a}(:[0-9]{{1,5}})?$"
 
 def get_instances() -> list:
     return load(open('data/instances.json'))[1:]
