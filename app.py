@@ -82,4 +82,4 @@ if __name__ == "__main__":
     print(f"{colors.yellow}      To run this normally, simply do `flask run`.{colors.reset}")
     logger.setLevel(logging.NOTSET)
     dev = True
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0")
