@@ -68,6 +68,7 @@ def frontend_online(frontend=None) -> bool:
     try:
         if '<input id="url-input-area"' in request("get", frontend, timeout=10).text:
             return True
+        return False
     except:
         return False
 
@@ -79,8 +80,10 @@ def test_service(service, api, link, version):
     else:
         timeout = 90
     
-    start = time()
     message = ""
+    took = 0
+    req = None
+    start = time()
     try:
         api_key = api_keys.get(identifier)
         headers = {
@@ -109,12 +112,12 @@ def test_service(service, api, link, version):
             print(message.replace("TIME", str(took)))
             return "request timed out"
     
-    if req.status_code == 200:
+    if req and req.status_code == 200:
         print(f"{colors.green}Service {service} works on {identifier}" + \
             # coloring again to avoid the rest of the text being in white when greping 
             f"{colors.green}, took {took}s.")
         return True
-    else:
+    elif req:
         try:
             reqjson = req.json()
             if version < 10:
@@ -129,7 +132,7 @@ def test_service(service, api, link, version):
             f"{colors.red}, status code: {req.status_code}, error: {error}, took {took}s.")
         return error
 
-def check_instance(instance) -> dict:
+def check_instance(instance) -> dict | None:
     instance_info = {}
     protocol = instance[0]
     frontend = instance[1]
@@ -145,7 +148,7 @@ def check_instance(instance) -> dict:
         return
     
     api_path = "api/serverInfo" if api not in forced_v10 else ""
-    api_link = f"{protocol}://{api}/{api_path}" if api else None
+    api_link = f"{protocol}://{api}/{api_path}"
     frontend_link = f"{protocol}://{frontend}/" if frontend else None
     is_frontend_online = frontend_online(frontend_link)
 
