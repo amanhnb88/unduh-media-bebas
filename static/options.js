@@ -63,8 +63,6 @@ function handleSearch(option, active) {
 }
 
 function createStyle(option) {
-    console.log("4. createstyle - option: " + option)
-
     const style = document.createElement("style");
     style.id = option + "style";
     document.querySelector("#optionstuff").appendChild(style);
