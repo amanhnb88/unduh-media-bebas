@@ -6,7 +6,7 @@ classes = {
     "search": ".search"
 }
 
-document.querySelectorAll("tr:not(th)")
+instances = document.querySelectorAll("tr:not(th)")
 checkboxes = document.querySelectorAll('#settings > * input[type="checkbox"]')
 search = document.querySelector('#search')
 
