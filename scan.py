@@ -2,7 +2,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from commentjson import load, dump # type: ignore
 from time import sleep as wait
 from requests import request
-from utils import colors, user_agent, commit, tests, Sanitize, ipregex
+from utils import colors, user_agent, tests, Sanitize, ipregex
 from re import sub, search
 from time import time
 from requests.exceptions import ReadTimeout

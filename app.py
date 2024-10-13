@@ -1,9 +1,7 @@
-from flask import Flask, render_template, request, send_from_directory
-from cache import cache_for
+from flask import Flask, render_template, request
 from flask_caching import Cache
 from scan import scan_instances
 from utils import colors, sort_instances, get_instances
-from time import sleep
 import logging
 
 dev = False

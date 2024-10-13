@@ -1,9 +1,8 @@
-from subprocess import run, DEVNULL
-from re import sub, search
+from subprocess import run
+from re import sub
 from commentjson import load # type: ignore
 from time import ctime, strptime, strftime
 from os import mkdir
-from threading import Thread
 from os.path import getmtime
 
 instancefilepath = 'output/instances.json'
