@@ -10,12 +10,12 @@
         {% include 'include/header.html' %}
     </header>
     <main>
-        <h2>Instances</h2>
-        If you need a list of instances, you don't need to scrape the website, just use this API. <br>
-        The API's endpoint is <code>/api/instances.json</code>, for this website the link will be <code>{{domain}}/api/instances.json</code>. <br>
-        Make sure you change the user-agent! I'm blocking default user-agents to prevent bots from hitting my websites! <br>
-        Example user-agent: <code>your-project/versionorcommit (+https://github.com/KwiatekMiki/example)</code> <br><br>
-        This is how the response will look like: <pre>
+        <h2>instances</h2>
+        if you need a list of instances, you don't need to scrape the website, just use this api. <br>
+        the api's endpoint is <code>/api/instances.json</code>, for this website the link will be <code>{{domain}}/api/instances.json</code>. <br>
+        make sure you change the user-agent! i'm blocking default user-agents to prevent bots from hitting my websites! <br>
+        example user-agent: <code>your-project/versionorcommit (+https://codeberg.org/kwiat/yourproject)</code> <br><br>
+        this is how the response will look like: <pre>
 [
     {
         "protocol": "https",
@@ -70,9 +70,9 @@
     // ...
 ]</pre>
 
-        <h2>Last updated</h2>
-        If you want to know when the instance list was last updated, just to a request to <code>/api/lastupdated</code> <br>
-        and you'll get the time of the last update. Example response:
+        <h2>last updated</h2>
+        if you want to know when the instance list was last updated, just to a request to <code>/api/lastupdated</code> <br>
+        and you'll get the time of the last update. example response:
         <pre>23:17:44</pre>
     </main>
 </body>

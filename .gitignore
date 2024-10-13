@@ -3,11 +3,8 @@
 .*env
 .env.example
 
-# api keys
-api_keys.json
-
-# ignored instances list
-data/ignored_instances
+# configuration file
+config.py
 
 # output
 output/

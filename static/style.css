@@ -30,10 +30,9 @@ header {
 #headerlinks > a::after {
     content: " · ";
     white-space: pre;
-    color: #FFFFFF;
 }
 
-#headerlinks > a#lastheaderlink::after {
+#headerlinks > a:last-child:after {
     content: "";
 }
 
@@ -55,13 +54,8 @@ header {
     margin-right: .7rem;
     margin-bottom: .7rem;
     background: rgb(25, 25, 25);
-    color: #FFFFFF;
+    color: rgb(225, 225, 225);
     border-radius: 9px;
-}
-
-input:checked {
-    background-color: rgb(225, 225, 225);
-    border: 0;
 }
 
 .checkbox > input {
@@ -74,6 +68,26 @@ input:checked {
     z-index: 0;
     margin-right: .7rem;
     border: .15rem solid rgb(225, 225, 225);
+}
+
+input:checked {
+    background-color: rgb(225, 225, 225);
+    border: 0;
+}
+
+@media (prefers-color-scheme: light) {
+    .checkbox {
+        background-color: rgb(232, 232, 232);
+        color: rgb(40, 40, 40);
+    }
+
+    .checkbox > input {
+        border-color: rgb(25, 25, 25);
+    }
+
+    .checkbox > input:checked {
+        background-color: rgb(25, 25, 25);
+    }
 }
 
 /**/
@@ -90,21 +104,37 @@ th {
 
 .trust0,
 .info {
-    color: #FFF0B6;
+    color: rgb(255, 240, 182);
 }
 
 .trust1 {
-    color: #B6FFD4;
+    color: rgb(182, 255, 212);
 }
 
 .trust-1,
 #warning {
-    color: #FFB6B6 !important;
+    color: rgb(255, 182, 182) !important;
 }   
+
+@media (prefers-color-scheme: light) {
+    .trust0,
+    .info {
+        color: rgb(221, 155, 0);
+    }
+
+    .trust1 {
+        color: rgb(90, 198, 134);
+    }
+
+    .trust-1,
+    #warning {
+        color: rgb(253, 67, 67) !important;
+    }
+}
 
 .score-1,
 .disabled {
-    color: #6E6E6E;
+    color: rgb(110, 110, 110);
 }
 
 a {

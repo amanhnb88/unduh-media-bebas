@@ -2,59 +2,26 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from commentjson import load, dump # type: ignore
 from time import sleep as wait
 from requests import request
-from colors import colors
+from utils import colors, user_agent, commit, tests, Sanitize, ipregex
 from re import sub, search
 from time import time
-from subprocess import run, DEVNULL
 from requests.exceptions import ReadTimeout
+from importlib import import_module
+from os.path import exists
+from secrets import choice
 
-def get_commit() -> str:
-    return run("git rev-parse --short @".split(' '),
-        # https://stackoverflow.com/a/41172862/26767691
-        capture_output = True, text = True).stdout.removesuffix("\n")
+if not exists("config.py"):
+    open("config.py", "w")
+config = import_module('config', package=None)
+api_keys = getattr(config, 'api_keys', {})
+ignored_instances = getattr(config, 'ignored_instances', [])
+forced_v10 = getattr(config, 'forced_v10', [])
+all_instances = load(open('data/instances.json'))[1:]
 
-commit = get_commit()
-user_agent = f"cobalt-instances/{commit} (+https://codeberg.org/kwiat/instances)"
-
-a = "([0-1]?[0-9]{0,2}|2[0-4][0-9]|25[0-5])"
-ipregex = f"^({a}\.){{3}}{a}(:[0-9]{{1,5}})?$"
-
-def get_instances() -> list:
-    return load(open('data/instances.json'))[1:]
-
-def get_api_keys() -> dict:
-    try:
-        return load(open('data/api_keys.json'))
-    except:
-        return {}
-
-api_keys = get_api_keys()
-
-def get_ignored_instances() -> list:
-    try:
-        open('data/ignored_instances')
-    except FileNotFoundError:
-        open('data/ignored_instances', 'w')
-    finally:
-        return open('data/ignored_instances').readlines()
-
-# https://github.com/hyperdefined/CobaltTester/commit/06d49a2
-class Sanitize:
-    @staticmethod
-    def name(text) -> str:
-        return sub(r'[^A-z0-9-_/. ]', '', text)
-
-    @staticmethod
-    def version(text) -> str:
-        return sub(r'[^0-9.]', '', text)
-
-    @staticmethod
-    def branch(text) -> str:
-        return sub(r'[^A-z0-9/_-]', '', text)
-
-    @staticmethod
-    def commit(text) -> str:
-        return sub(r'[^a-z0-9]', '', text)
+instances = [
+    instance for instance in all_instances
+    if instance[2] not in ignored_instances
+]
 
 def get_api_info(api_link) -> dict:
     print(f"{colors.yellow}Doing a request to {api_link}")
@@ -93,9 +60,6 @@ def get_api_info(api_link) -> dict:
         "name": Sanitize.name(name),
         "cors": cors
     }
-
-def get_tests() -> dict:
-    return load(open('data/tests.json'))
 
 def frontend_online(frontend=None) -> bool:
     if not frontend:
@@ -180,9 +144,11 @@ def check_instance(instance) -> dict:
         print(f"{colors.cyan}Skipping {identifier} because it doesn't have any {missing}.")
         return
     
-    api_link = f"{protocol}://{api}/api/serverInfo" if api else None
-    frontend_link = f"{protocol}://{frontend}" if frontend else None
+    api_path = "api/serverInfo" if api not in forced_v10 else ""
+    api_link = f"{protocol}://{api}/{api_path}" if api else None
+    frontend_link = f"{protocol}://{frontend}/" if frontend else None
     is_frontend_online = frontend_online(frontend_link)
+
     instance_info["protocol"] = protocol
     instance_info["frontend"] = frontend
     instance_info["api"] = api
@@ -215,7 +181,6 @@ def check_instance(instance) -> dict:
     else:
         api_link = f"{protocol}://{api}/"
     
-    tests = get_tests()
     addscore = 1 / len(tests) * 100
     youtubecookies = True
 
@@ -239,7 +204,7 @@ def check_instance(instance) -> dict:
             instance_info["score"] += addscore
 
         instance_info["services"][_service] = test_result
-        wait(5) # to avoid getting rate limited
+        wait(choice(range(4, 6)) + choice(range(1, 100)) * 0.01) # to avoid getting rate limited
     
     instance_info["score"] = round(instance_info["score"])
     
@@ -253,13 +218,7 @@ def test_instance(instance) -> dict | None:
 
 def scan_instances():
     start = time()
-    instances = get_instances()
     instance_list = []
-    ignored_instances = get_ignored_instances()
-    for _instance in instances:
-        instance = _instance[2]
-        if instance in ignored_instances:
-            instances.remove(_instance)  
     
     with ThreadPoolExecutor(max_workers=100) as executor:
         instancefuture = {executor.submit(test_instance, instance): instance for instance in instances}

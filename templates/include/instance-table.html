@@ -1,12 +1,14 @@
 <table>
     <tr>
-        <th>Service</th>
-        <th>Working?</th>
+        <th>service</th>
+        <th>working?</th>
     </tr>
     {% for service, working in instance['services'].items() %}
     <tr>
         <td>
-            {{ service }}
+            <a href="/service/{{ service }}">
+                {{ service|replace("_", " ") }}
+            </a>
         </td>
         {% if working == True %}
         <td>

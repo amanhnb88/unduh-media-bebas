@@ -12,14 +12,13 @@
     </div>
 
     <div class="checkbox">
-        <input type="checkbox" id="domainonly" checked> <label for="domainonly">only instances a domain</label>
+        <input type="checkbox" id="domainonly" checked> <label for="domainonly">only instances with a domain</label>
     </div>
 </div>
 <table>
     <tr>
         <th>Frontend</th>
         <th>API</th>
-        <th>Name</th>
         <th>Score</th>
         <th>Version</th>
     </tr>
@@ -39,11 +38,16 @@
             {% endif %}
         </td>
         <td>
+            {% if instance['trust'] == -1 %}
+            <a href="/instance/{{ instance['api'] }}">
+                {{ instance['api'] }}
+            </a>
+            {% else %}
             <a href="{{ instance['protocol'] }}://{{ instance['api'] }}/api/serverInfo">
                 {{ instance['api'] }}
             </a>
+            {% endif %}
         </td>
-        <td>{{ instance.get('name', '-') }}</td>
         <td>
             <a href="/instance/{{ instance['api'] }}">
                 {{ instance['score'] }}%

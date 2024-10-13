@@ -54,7 +54,7 @@ no, don't make a commit to fix a bug, do this instead:
 3. `git push --force`
 
 ## closes #x
-if you're making a pull request that fixes, adds something or anything related to an issue, don't forget to add `closes #x` somewhere, preferably on the beginning.
+if you're making a pull request that fixes, adds something or anything related to an issue, don't forget to add a line saying `closes #x` somewhere, preferably on the beginning.
 
 ## testing your changes
 ### website changes
