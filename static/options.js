@@ -27,8 +27,6 @@ search.addEventListener("input", function() {
 // Styling functions
 
 function handleOption(option, active, classestohide) {
-    console.log("3. handleoption - option: " + option + " - active: " + active + " - classestohide: " + classestohide)
-
     let optionstyle;
     optionstyle = document.querySelector(`#${option}style`);
 
@@ -44,12 +42,10 @@ function handleOption(option, active, classestohide) {
 }
 
 function handleSearch(option, active) {
-    console.log("3. handleoption_search - option: " + option + " - active: " + active)
 
     if (active) {
         instances.forEach((instance) => {
             if (instance.dataset.api.includes(active) || instance.dataset.frontend.includes(active)) {
-                console.log(instance)
                 instance.classList.add("show")
                 instance.classList.remove("hide")
             } else {
