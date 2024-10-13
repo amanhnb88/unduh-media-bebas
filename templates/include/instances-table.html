@@ -37,7 +37,7 @@
         <th>Version</th>
     </tr>
     {% for instance in instances %}
-    <tr class="trust{{ instance['trust'] }} score{{ instance['score'] }} frontend{{ instance['online']['frontend'] }} nodomain{{ instance['nodomain'] }}">
+    <tr class="trust{{ instance['trust'] }} score{{ instance['score'] }} frontend{{ instance['online']['frontend'] }} nodomain{{ instance['nodomain'] }}" data-frontend="{{ instance['frontend'] }}" data-api="{{ instance['api'] }}" data-is-instance="true">
         <td>
             {% if instance['trust'] == -1 %}
             <a href="/instance/{{ instance['api'] }}">

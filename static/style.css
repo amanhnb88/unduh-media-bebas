@@ -170,6 +170,14 @@ a {
     text-decoration: none;
 }
 
+.show {
+    display: auto;
+}
+
+.hide {
+    display: none;
+}
+
 /* mobile */
 @media screen and (max-width: 500px) {
     body {
