@@ -1,6 +1,6 @@
 from subprocess import run, DEVNULL
 from re import sub, search
-from commentjson import load
+from commentjson import load # type: ignore
 from time import ctime, strptime, strftime
 from os import mkdir
 from threading import Thread
@@ -42,12 +42,12 @@ def get_commit() -> str:
         # https://stackoverflow.com/a/41172862/26767691
         capture_output = True, text = True).stdout.removesuffix("\n")
 
-def lastmodifiedhour(path):
+def lastmodifiedhour(path) -> str:
     lastmodified = ctime(getmtime(path))
     timestruct = strptime(lastmodified)
     return strftime('%H:%M:%S', timestruct)
 
-def get_instances():
+def get_instances() -> tuple:
     try:
         open('output/instances.json')
     except FileNotFoundError:
@@ -61,7 +61,7 @@ def get_instances():
             lastmodifiedhour(instancefilepath)
 
 # made this a class just in case 
-def sort_instances(instances):
+def sort_instances(instances) -> list:
     return sorted(
         instances[0],
         key=lambda x: x['score'],

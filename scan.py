@@ -72,7 +72,7 @@ def frontend_online(frontend=None) -> bool:
     except:
         return False
 
-def test_service(service, api, link, version):
+def test_service(service, api, link, version) -> bool | str | None:
     identifier = api.split("/")[2]
     
     if service.lower() == "soundcloud":
