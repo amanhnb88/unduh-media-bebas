@@ -66,9 +66,13 @@ def frontend_online(frontend=None) -> bool:
         return False
     
     try:
-        if '<input id="url-input-area"' in request("get", frontend, timeout=10).text:
-            return True
-        return False
+        return '<input' in request(
+            "get", frontend,
+            timeout=10,
+            headers={
+                "User-Agent": user_agent
+            }
+        ).text
     except:
         return False
 
