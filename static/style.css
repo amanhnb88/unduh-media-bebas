@@ -179,11 +179,7 @@ a {
 }
 
 /* mobile */
-@media screen and (max-width: 500px) {
-    body {
-        width: 150%;
-    }
-
+@media screen and (max-width: 1100px) {
     main {
         flex-direction: column;
         max-width: 100%;
