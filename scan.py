@@ -86,7 +86,6 @@ def test_service(service, api, link, version) -> bool | str | None:
     
     message = ""
     took = 0
-    req = None
     start = time()
     try:
         api_key = api_keys.get(identifier)
@@ -116,14 +115,14 @@ def test_service(service, api, link, version) -> bool | str | None:
             print(message.replace("TIME", str(took)))
             return "request timed out"
     
-    if req and req.status_code == 200:
+    if req and req.status_code == 200: # type: ignore
         print(f"{colors.green}Service {service} works on {identifier}" + \
             # coloring again to avoid the rest of the text being in white when greping 
             f"{colors.green}, took {took}s.")
         return True
-    elif req:
+    else:
         try:
-            reqjson = req.json()
+            reqjson = req.json() # type: ignore
             if version < 10:
                 error = reqjson.get("text", "no error").split(".")[0]
             else:
@@ -133,7 +132,7 @@ def test_service(service, api, link, version) -> bool | str | None:
             
         print(f"{colors.red}Service {service} doesn't work on {identifier}" + \
             # coloring again to avoid the rest of the text being in white when greping 
-            f"{colors.red}, status code: {req.status_code}, error: {error}, took {took}s.")
+            f"{colors.red}, status code: {req.status_code}, error: {error}, took {took}s.") # type: ignore
         return error
 
 def check_instance(instance) -> dict | None:
