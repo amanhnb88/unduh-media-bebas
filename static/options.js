@@ -6,7 +6,7 @@ classes = {
     "search": ".search"
 }
 
-instances = document.querySelectorAll(`*[data-is-instance]`)
+document.querySelectorAll("tr:not(th)")
 checkboxes = document.querySelectorAll('#settings > * input[type="checkbox"]')
 search = document.querySelector('#search')
 
