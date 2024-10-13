@@ -6,7 +6,7 @@ classes = {
     "search": ".search"
 }
 
-instances = document.querySelectorAll("tr:not(th)")
+instances = document.querySelectorAll("*[data-api]")
 checkboxes = document.querySelectorAll('#settings > * input[type="checkbox"]')
 search = document.querySelector('#search')
 
@@ -18,10 +18,10 @@ checkboxes.forEach((input) => {
     })
 })
 
-handleSearch(search.id, search.value)
+handleSearch(search.value)
 
 search.addEventListener("input", function() {
-    handleSearch(search.id, search.value)
+    handleSearch(search.value)
 })
 
 // Styling functions
@@ -41,7 +41,7 @@ function handleOption(option, active, classestohide) {
     }
 }
 
-function handleSearch(option, active) {
+function handleSearch(active) {
     if (active) {
         instances.forEach((instance) => {
             if (instance.dataset.api.includes(active) || instance.dataset.frontend.includes(active)) {
