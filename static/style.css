@@ -159,9 +159,3 @@ a {
         font-size: 3.5rem;
     }    
 }
-
-@media screen and (max-width: 650px) {
-    body {
-        width: 150%;
-    }
-}
