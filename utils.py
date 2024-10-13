@@ -52,7 +52,6 @@ def get_instances():
         open('output/instances.json')
     except FileNotFoundError:
         # when there is no output/instances.json file, scan instances in the background
-        Thread(target=scan_instances).start()
         try:
             mkdir("output")
         finally:

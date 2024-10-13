@@ -15,6 +15,9 @@ cache.clear()
 logger = logging.getLogger('werkzeug')
 logger.setLevel(logging.WARNING)
 
+if get_instances()[0] == {}:
+    scan_instances()
+
 @app.route('/')
 @cache.cached(timeout=30)
 def index():
