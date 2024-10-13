@@ -13,6 +13,35 @@
         instance: {{ instance['api'] }} <br>
         to see why a service isn't working, hover over the <b>x</b> (pc only)
     </p>
+    <p style="text-align: center;">
+        frontend: 
+        {% if instance.get('frontend') == "None" %}
+        none
+        {% else %}
+        <a href="{{ instance['protocol'] }}://{{ instance['frontend'] }}">
+            <b>{{ instance['protocol'] }}://</b>{{ instance['frontend'] }}
+        </a>
+        {% endif %} <br>
+
+        api:
+        <a href="{{ instance['protocol'] }}://{{ instance['api'] }}/api/serverInfo">
+            {{ instance['api'] }}
+        </a> <br> <br>
+        
+        {% if instance['online']['api'] %}
+        version: {{ instance['version'] }} <br>
+
+        branch:
+        <a target="_blank" href="https://github.com/imputnet/cobalt/tree/{{ instance['branch'] }}">
+            {{ instance['branch'] }}
+        </a> <br>
+
+        commit:
+        <a target="_blank" href="https://github.com/imputnet/cobalt/commit/{{ instance['commit'] }}">
+            {{ instance['commit'][:8] }}
+        </a> <br>
+        {% endif %}
+    </p>
     {% if instance['trust'] == -1 %}
     <p style="text-align: center; margin-top: 0;" id="warning">!! this instance is known to be not safe, please proceed with caution !!</p>
     {% endif %}
