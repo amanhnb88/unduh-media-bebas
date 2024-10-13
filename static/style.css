@@ -44,7 +44,7 @@ header {
     flex-direction: column;
 }
 
-.checkbox {
+.settings-item {
     display: inline-flex;
     align-items: center;
     flex-direction: row;
@@ -58,7 +58,8 @@ header {
     border-radius: 9px;
 }
 
-.checkbox > input {
+
+.settings-item > input[type="checkbox"] {
     cursor: pointer;
     border-radius: 4px;
     -webkit-appearance: none;
@@ -70,22 +71,49 @@ header {
     border: .15rem solid rgb(225, 225, 225);
 }
 
+.settings-item > input[type='text'] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 20px;
+    z-index: 0;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 14px;
+}
+
+.settings-item > svg {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    z-index: 0;
+    
+    margin-right: .7rem;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    margin-left: 4px;
+}
+
 input:checked {
     background-color: rgb(225, 225, 225);
     border: 0;
 }
 
 @media (prefers-color-scheme: light) {
-    .checkbox {
+    .settings-item {
         background-color: rgb(232, 232, 232);
         color: rgb(40, 40, 40);
     }
 
-    .checkbox > input {
+    .settings-item > input[type="checkbox"] {
         border-color: rgb(25, 25, 25);
     }
 
-    .checkbox > input:checked {
+    .settings-item > input[type="checkbox"]:checked {
         background-color: rgb(25, 25, 25);
     }
 }
