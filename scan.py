@@ -189,9 +189,15 @@ def check_instance(instance) -> dict | None:
     
     addscore = 1 / len(tests) * 100
     youtubecookies = True
+    turnstile = False
 
     for service, link in tests.items():
         _service = service.lower().replace(" ", "_")
+
+        if turnstile:
+            print(f"{colors.red}{identifier}{colors.red} has turnstile enabled, skipping tests.")
+            instance_info["services"][_service] = "turnstile is enabled"
+            continue
 
         if not youtubecookies and "youtube" in service.lower():
             print(f"{colors.red}{identifier}{colors.red} didn't set up cookies for YouTube, skipping other YouTube tests.")
@@ -205,6 +211,10 @@ def check_instance(instance) -> dict | None:
             print(f"{colors.red}{identifier}{colors.red} didn't set up cookies for YouTube.")
             test_result = "youtube cookies aren't set up"
             youtubecookies = False
+        
+        if str_test_result == "error.api.auth.jwt.missing":
+            test_result = "turnstile is enabled"
+            turnstile = True
         
         if test_result == True:
             instance_info["score"] += addscore
