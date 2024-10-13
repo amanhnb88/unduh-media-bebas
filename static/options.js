@@ -42,7 +42,6 @@ function handleOption(option, active, classestohide) {
 }
 
 function handleSearch(option, active) {
-
     if (active) {
         instances.forEach((instance) => {
             if (instance.dataset.api.includes(active) || instance.dataset.frontend.includes(active)) {
@@ -51,7 +50,6 @@ function handleSearch(option, active) {
             } else {
                 instance.classList.add("hide")
                 instance.classList.remove("show")
-
             }
         })
     } else {
