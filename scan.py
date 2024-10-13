@@ -86,7 +86,6 @@ def test_service(service, api, link, version) -> bool | str | None:
     
     message = ""
     took = 0
-    req = None
     start = time()
     try:
         api_key = api_keys.get(identifier)
@@ -116,14 +115,14 @@ def test_service(service, api, link, version) -> bool | str | None:
             print(message.replace("TIME", str(took)))
             return "request timed out"
     
-    if req and req.status_code == 200:
+    if req and req.status_code == 200: # type: ignore
         print(f"{colors.green}Service {service} works on {identifier}" + \
             # coloring again to avoid the rest of the text being in white when greping 
             f"{colors.green}, took {took}s.")
         return True
-    elif req:
+    else:
         try:
-            reqjson = req.json()
+            reqjson = req.json() # type: ignore
             if version < 10:
                 error = reqjson.get("text", "no error").split(".")[0]
             else:
@@ -133,7 +132,7 @@ def test_service(service, api, link, version) -> bool | str | None:
             
         print(f"{colors.red}Service {service} doesn't work on {identifier}" + \
             # coloring again to avoid the rest of the text being in white when greping 
-            f"{colors.red}, status code: {req.status_code}, error: {error}, took {took}s.")
+            f"{colors.red}, status code: {req.status_code}, error: {error}, took {took}s.") # type: ignore
         return error
 
 def check_instance(instance) -> dict | None:
@@ -190,9 +189,15 @@ def check_instance(instance) -> dict | None:
     
     addscore = 1 / len(tests) * 100
     youtubecookies = True
+    turnstile = False
 
     for service, link in tests.items():
         _service = service.lower().replace(" ", "_")
+
+        if turnstile:
+            print(f"{colors.red}{identifier}{colors.red} has turnstile enabled, skipping tests.")
+            instance_info["services"][_service] = "turnstile is enabled"
+            continue
 
         if not youtubecookies and "youtube" in service.lower():
             print(f"{colors.red}{identifier}{colors.red} didn't set up cookies for YouTube, skipping other YouTube tests.")
@@ -206,6 +211,10 @@ def check_instance(instance) -> dict | None:
             print(f"{colors.red}{identifier}{colors.red} didn't set up cookies for YouTube.")
             test_result = "youtube cookies aren't set up"
             youtubecookies = False
+        
+        if str_test_result == "error.api.auth.jwt.missing":
+            test_result = "turnstile is enabled"
+            turnstile = True
         
         if test_result == True:
             instance_info["score"] += addscore
