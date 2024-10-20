@@ -1,0 +1,12 @@
+[
+    // "why are some instances not here?"
+    // due to abuse of instance lists, wukko has decided that "instance lists
+    // will not go back up as-is. all future lists must be opt-in, instances
+    // must be added only after hoster's explicit consent to participate."
+
+    ["protocol", "frontend", "api", "trust"],
+    ["https", "cobalt.tools", "api.cobalt.tools", 1],
+    ["https", "cobalt-7.kwiatekmiki.com", "cobalt-7.kwiatekmiki.com", 1],
+    ["https", "cobalt.canine.tools", "cobalt-backend.canine.tools", 1],
+    ["https", "cobalt.kwiatekmiki.com", "cobalt-api.kwiatekmiki.com", 1]
+]

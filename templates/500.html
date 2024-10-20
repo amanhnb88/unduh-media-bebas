@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'include/head.html' %}
+    <title>internal server error</title>
+    <meta name="description" content="a list of community (and official) cobalt.tools instances">
+</head>
+<body>
+    <h1>internal server error</h1>
+    <p>
+        looks like something went wrong! <br>
+        please <a class="link" href="https://codeberg.org/kwiat/instances/issues/new">make an issue on codeberg</a> so i can fix that
+    </p>
+
+    <h2>log output</h2>
+    <code class="log">500 internal server error</code>
+    <code class="log">path: {{ path }}</code>
+    <code class="log">parareters: {{ parameters or "none" }}</code>
+    <code class="log">error: {{ error }}</code>
+</body>
+</html>

@@ -1,0 +1,33 @@
+# there is no need for a .env file
+# also ignore all virtual environments
+.*env
+.env.example
+
+# configuration file
+config.py
+
+# output
+output/
+templates/score/
+
+# python stuff
+__pycache__/
+*.pyc
+*.pyo
+
+# windows stuff
+# (i recommend you switch to linux/macos, it's a lot better)
+desktop.ini
+*/desktop.ini
+
+# macos stuff
+.DS_Store
+
+# ide stuff
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# testing file
+test.py

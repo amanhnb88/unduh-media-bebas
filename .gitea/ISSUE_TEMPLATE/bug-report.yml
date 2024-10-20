@@ -1,0 +1,59 @@
+name: Bug Report
+about: Report a bug
+labels: ["Kind/Bug"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the bug
+      placeholder: The website isn't websiting
+    validations:
+      required: true
+  - type: textarea
+    id: excepted
+    attributes:
+      label: Excepted result
+      description: What was supposed to happen?
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual result
+      description: What actually happened?
+    validations:
+      required: true
+  - type: textarea
+    id: reproducing
+    attributes:
+      label: How to reproduce
+      description: What does someone need to do to reproduce this?
+      placeholder: |
+        1. Do thing thing
+        2. Do another thing
+        3. Go to the website
+        4. My computer is lauching nuclear missles at the USA
+        (don't forget to put real information instead of whatever this is)
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Log output
+      description: |
+        If there are any logs that are related to your issue, put them here.
+        No need to use ```, it will format your input automatically.
+      render: shell
+  - type: textarea
+    id: information
+    attributes:
+      label: More information
+      description: If you want to add more information or give a possible solution to this, you can say that here.
+  - type: checkboxes
+    id: duplicates
+    attributes:
+      label: Did you check if someone has already reported this?
+      description: If not, just open [the issues page](https://codeberg.org/kwiat/instances/issues) in a new tab and search for any possibly related keywords.
+      options:
+        - label: I have checked for duplicates and no one else has already reported this.
+          required: true

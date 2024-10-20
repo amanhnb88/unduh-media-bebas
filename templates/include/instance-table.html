@@ -1,0 +1,24 @@
+<table>
+    <tr>
+        <th>service</th>
+        <th>working?</th>
+    </tr>
+    {% for service, working in instance['services'].items() %}
+    <tr>
+        <td>
+            <a href="/service/{{ service }}">
+                {{ service|replace("_", " ") }}
+            </a>
+        </td>
+        {% if working == True %}
+        <td>
+            ✅
+        </td>
+        {% else %}
+        <td title="{{ working }}">
+            ❌
+        </td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+</table>

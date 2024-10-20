@@ -1,0 +1,13 @@
+api_keys = {
+    "api.cobalt.tools": "b00b1234-a3e5-99b1-c6d1-dba4512ae190",
+    "cobalt.kwiatekmiki.com": "b5c7160a-b655-4c7a-b500-de839f094550"
+}
+
+ignored_instances = [
+    "api.cobalt.example",
+    "api.legitinstance.test"
+]
+
+forced_v10 = [
+    "api.cobalt.tools"
+]

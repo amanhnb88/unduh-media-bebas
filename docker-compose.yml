@@ -1,0 +1,10 @@
+services:
+    app:
+        container_name: cobalt-instances
+        build:
+            context: .
+        ports:
+            - "5000:5000"
+        volumes:
+            - ./data/:/app/data
+            - ./output/:/app/output

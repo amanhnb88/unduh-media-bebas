@@ -1,0 +1,73 @@
+<div id="settings">
+    <div class="settings-item">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#818181" stroke-width="2"  stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-search">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+        <path d="M21 21l-6 -6" />
+      </svg>
+  
+      <input type="text" placeholder="search instances" id="search"/>
+    </div>
+  
+    <div class="settings-item">
+      <input type="checkbox" id="safe" />
+      <label for="safe">only show safe instances</label>
+    </div>
+  
+    <div class="settings-item">
+      <input type="checkbox" id="online" checked />
+      <label for="online">only show online instances</label>
+    </div>
+  
+    <div class="settings-item">
+      <input type="checkbox" id="frontend" checked />
+      <label for="frontend">only instances with frontend</label>
+    </div>
+  
+    <div class="settings-item">
+      <input type="checkbox" id="domainonly" checked />
+      <label for="domainonly">only instances with a domain</label>
+    </div>
+</div>
+<table>
+    <tr>
+        <th>Frontend</th>
+        <th>API</th>
+        <th>Score</th>
+        <th>Version</th>
+    </tr>
+    {% for instance in instances %}
+    <tr class="trust{{ instance['trust'] }} score{{ instance['score'] }} frontend{{ instance['online']['frontend'] }} nodomain{{ instance['nodomain'] }}" data-frontend="{{ instance['frontend'] }}" data-api="{{ instance['api'] }}">
+        <td>
+            {% if instance['trust'] == -1 %}
+            <a href="/instance/{{ instance['api'] }}">
+                {{ instance['frontend'] }}
+            </a>
+            {% elif instance.get('frontend') != "None" %}
+            <a href="{{ instance['protocol'] }}://{{ instance['frontend'] }}">
+                {{ instance['frontend'] }}
+            </a>
+            {% else %}
+            -
+            {% endif %}
+        </td>
+        <td>
+            {% if instance['trust'] == -1 %}
+            <a href="/instance/{{ instance['api'] }}">
+                {{ instance['api'] }}
+            </a>
+            {% else %}
+            <a href="{{ instance['protocol'] }}://{{ instance['api'] }}/api/serverInfo">
+                {{ instance['api'] }}
+            </a>
+            {% endif %}
+        </td>
+        <td>
+            <a href="/instance/{{ instance['api'] }}">
+                {{ instance['score'] }}%
+            </a>
+        </td>
+        <td>{{ instance.get('version', 'unknown') }}</td>
+    </tr>
+    {% endfor %}
+</table>

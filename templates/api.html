@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'include/head.html' %}
+    <title>cobalt instances api</title>
+    <meta name="description" content="api documentation for a cobalt instance list">
+</head>
+<body>
+    <header>
+        {% include 'include/header.html' %}
+    </header>
+    <main>
+        <h2>instances</h2>
+        if you need a list of instances, you don't need to scrape the website, just use this api. <br>
+        the api's endpoint is <code>/api/instances.json</code>, for this website the link will be <code>{{domain}}/api/instances.json</code>. <br>
+        make sure you change the user-agent! i'm blocking default user-agents to prevent bots from hitting my websites! <br>
+        example user-agent: <code>your-project/versionorcommit (+https://codeberg.org/kwiat/yourproject)</code> <br><br>
+        this is how the response will look like: <pre>
+[
+    {
+        "protocol": "https",
+        "frontend": "None",
+        "api": "offlineinstance.fake",
+        "trust": 0,
+        "online": {
+            "api": true,
+            "frontend": false
+        },
+        "services": {},
+        "score": -1
+    },
+    {
+        "protocol": "https",
+        "frontend": "cobalt.tools",
+        "api": "api.cobalt.tools",
+        "trust": 1,
+        "online": {
+            "api": true,
+            "frontend": true
+        },
+        "services": {
+            "YouTube": false,
+            "YouTube Music": true,
+            "YouTube Shorts": true,
+            "TikTok": true,
+            "Instagram": true,
+            "Twitter": true,
+            "Reddit": true,
+            "SoundCloud": true,
+            "BiliBili": false,
+            "Dailymotion": true,
+            "Odnoklassniki": true,
+            "Streamable": true,
+            "Tumblr": true,
+            "Twitch Clips": true,
+            "VK": true,
+            "Vimeo": true,
+            "Pinterest": true,
+            "RUTUBE": true,
+            "Vine": true,
+            "Loom": true
+        },
+        "version": "7.15",
+        "branch": "current",
+        "commit": "05ba1f0",
+        "name": "olly",
+        "cors": true,
+        "score": 90
+    },
+    // ...
+]</pre>
+
+        <h2>last updated</h2>
+        if you want to know when the instance list was last updated, just to a request to <code>/api/lastupdated</code> <br>
+        and you'll get the time of the last update. example response:
+        <pre>23:17:44</pre>
+    </main>
+</body>
+</html>
