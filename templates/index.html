@@ -9,17 +9,12 @@
     <header>
         {% include 'include/header.html' %}
     </header>
-    <span style="text-align: center;" id="warning">!! you should only use the instances below if you have problems with the official one (cobalt.tools) !!</span>
+    
+    {% include 'messages/problems.html' %}
+    {% include 'messages/lastmodified.html' %}
+    {% include 'messages/auth.html' %}
+    {% include 'messages/colors.html' %}
 
-    <p style="text-align: center; margin: 8px;" class="info">
-        last updated: {{ lastmodified }} (UTC) <br>
-
-        please note that a lot, if not all instances that are here have turnstile and/or api keys enabled. <br>
-        you might need to ask the owner of an instance for an api key to use its api.
-        <a href="https://github.com/imputnet/cobalt/discussions/860" class="link">but... why??</a>
-    </p>
-
-    <p style="text-align: center; margin-top: 0px;" class="disabled">meanings of colors: green: trusted and safe; yellow: not trusted but looks safe; red: not safe, avoid at all costs; gray: offline</p>
     <main style="display: flex;">
         {% include 'include/instances-table.html' %}
     </main>
