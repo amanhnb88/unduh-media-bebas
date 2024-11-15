@@ -9,6 +9,7 @@
     ["https", "cobalt-7.kwiatekmiki.com", "cobalt-7.kwiatekmiki.com", 1],
     ["https", "cobalt.canine.tools", "cobalt-backend.canine.tools", 1],
     ["https", "cobalt.kwiatekmiki.com", "cobalt-api.kwiatekmiki.com", 1],
+    ["https", "None", "cobalt-us.kwiatekmiki.com", 1]
     ["https", "download.stuff.solutions", "downloadapi.stuff.solutions", 1],
     ["https", "None", "dl.khyernet.xyz", 1],
     ["https", "co.rooot.gay", "api.co.rooot.gay", 1],
