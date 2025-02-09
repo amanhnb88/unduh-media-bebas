@@ -1,7 +1,7 @@
 # there is no need for a .env file
 # also ignore all virtual environments
-.*env
-.env.example
+.*env*
+!.env.example
 
 # configuration file
 config.py

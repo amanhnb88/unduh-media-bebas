@@ -3,3 +3,14 @@
 <link rel="stylesheet" href="https://playlist.kwiatekmiki.pl/static/font.css">
 <link rel="stylesheet" href="/static/style.css">
 <meta name="google" content="nositelinkssearchbox">
+
+{% if analytics and analytics.plausible.domain %}
+    <script defer data-domain="{{ analytics.plausible.domain  }}"
+            src="https://{{ analytics.plausible.host or "plausible.io" }}/js/script.js">
+    </script>
+{% endif %}
+
+{% if analytics and analytics.umami.id %}
+    <script defer src="https://{{ analytics.umami.host or "cloud.umami.is" }}/script.js"
+            data-website-id="{{ analytics.umami.id }}"></script>
+{% endif %}

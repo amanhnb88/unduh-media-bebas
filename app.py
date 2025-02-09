@@ -2,8 +2,10 @@ from flask import Flask, render_template, request
 from flask_caching import Cache
 from scan import scan_instances
 from utils import colors, sort_instances, get_instances
+from os import environ
 import logging
 
+env = environ
 dev = False
 app = Flask(__name__)
 app.config["CACHE_TYPE"] = "SimpleCache" if __name__ != "__main__" else "NullCache"
@@ -12,6 +14,17 @@ cache.clear()
 
 logger = logging.getLogger('werkzeug')
 logger.setLevel(logging.WARNING)
+
+analytics = {
+    "plausible": {
+        "host": env.get("PLAUSIBLE_HOST"),
+        "domain": env.get("PLAUSIBLE_DOMAIN")
+    },
+    "umami": {
+        "host": env.get("UMAMI_HOST"),
+        "id": env.get("UMAMI_WEBSITE_ID")
+    },
+}
 
 if get_instances()[0] == {}:
     scan_instances()
@@ -30,7 +43,8 @@ def internalservererror(e):
     return render_template("500.html",
         path=request.path,
         parameters=parameters,
-        error=error
+        error=error,
+        analytics=analytics
     ), 500
 
 @app.route('/')
@@ -40,18 +54,24 @@ def index():
 
     return render_template("index.html",
         instances=sort_instances(instances),
-        lastmodified=instances[1]
+        lastmodified=instances[1],
+        analytics=analytics
     )
 
 @app.route('/api')
 @cache.cached(timeout=120)
 def api():
-    return render_template("api.html", domain=request.host_url.rstrip("/"))
+    return render_template(
+        "api.html",
+        domain=request.host_url.rstrip("/"),
+        analytics=analytics
+    )
 
 @app.route('/faq')
 @cache.cached(timeout=120)
 def faq():
-    return render_template("faq.html")
+    return render_template("faq.html",
+        analytics=analytics)
 
 @app.route('/service/<service>')
 @cache.cached(timeout=30)
@@ -64,8 +84,8 @@ def service(service):
             instancelist.remove(instance)
     
     return render_template("service.html", service=service,
-        instances=sort_instances(instances),
-        lastmodified=instances[1]
+        instances=sort_instances(instances), lastmodified=instances[1],
+        analytics=analytics
     )
 
 @app.route('/api/instances.json')
@@ -89,7 +109,7 @@ def instance(instanceapi):
             instance = _instance
     
     return render_template("instance.html",
-        instance=instance
+        instance=instance, analytics=analytics
     )
 
 if __name__ == "__main__":
