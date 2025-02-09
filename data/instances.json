@@ -5,7 +5,11 @@
     // must be added only after hoster's explicit consent to participate."
 
     ["protocol", "frontend", "api", "trust"],
-    ["https", "cobalt.tools", "api.cobalt.tools", 1],
+    ["https", "cobalt.tools", "kityune.cobalt.tools", 1],
+    ["https", "cobalt.tools", "olly.cobalt.tools", 1],
+    ["https", "cobalt.tools", "nachos.cobalt.tools", 1],
+    ["https", "cobalt.tools", "sunny.cobalt.tools", 1],
+    ["https", "cobalt.tools", "blossom.cobalt.tools", 1],
     ["https", "cobalt-7.kwiatekmiki.com", "cobalt-7.kwiatekmiki.com", 1],
     ["https", "cobalt.canine.tools", "cobalt-backend.canine.tools", 1],
     ["https", "cobalt.kwiatekmiki.com", "cobalt-api.kwiatekmiki.com", 1],
