@@ -60,7 +60,7 @@ def service(service):
     instancelist = instances[0]
 
     for instance in instancelist:
-        if not instance["services"].get(service, False):
+        if instance["services"].get(service, False) != True:
             instancelist.remove(instance)
     
     return render_template("service.html", service=service,
