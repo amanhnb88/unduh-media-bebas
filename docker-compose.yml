@@ -2,8 +2,9 @@ services:
     app:
         container_name: cobalt-instances
         image: codeberg.org/kwiat/instances
+        platform: linux/arm64 # remove this if not using arm
         ports:
-            - "5000:5000"
+            - "5000:5000" # ONLY CHANGE THE FIRST 5000!
         volumes:
             - ./data/:/app/data
             - ./output/:/app/output
