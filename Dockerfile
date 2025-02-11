@@ -3,7 +3,8 @@ WORKDIR /app
 
 COPY . /app
 
-RUN pip install --upgrade pip && \
+RUN apk add git && \
+    pip install --upgrade pip && \
     pip install commentjson flask requests \
                 Flask-Caching
 
