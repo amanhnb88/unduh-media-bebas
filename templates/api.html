@@ -17,55 +17,61 @@
         example user-agent: <code>your-project/versionorcommit (+https://codeberg.org/kwiat/yourproject)</code> <br><br>
         this is how the response will look like: <pre>
 [
+[
     {
-        "protocol": "https",
+        "api": "cobalt.invalid",
         "frontend": "None",
-        "api": "offlineinstance.fake",
-        "trust": 0,
+        "nodomain": false,
         "online": {
-            "api": true,
-            "frontend": false
+            "api": false,
+            "frontend": true
         },
+        "protocol": "https",
+        "score": -1,
         "services": {},
-        "score": -1
+        "trust": 1
     },
     {
-        "protocol": "https",
+        "api": "kityune.imput.net",
+        "branch": "main",
+        "commit": "53067608901f2969f56766ab2fef834ce0fdfe86",
+        "cors": true,
         "frontend": "cobalt.tools",
-        "api": "api.cobalt.tools",
-        "trust": 1,
+        "name": "None",
+        "nodomain": false,
         "online": {
             "api": true,
             "frontend": true
         },
+        "protocol": "https",
+        "score": 91,
         "services": {
-            "YouTube": false,
-            "YouTube Music": true,
-            "YouTube Shorts": true,
-            "TikTok": true,
-            "Instagram": true,
-            "Twitter": true,
-            "Reddit": true,
-            "SoundCloud": true,
-            "BiliBili": false,
-            "Dailymotion": true,
-            "Odnoklassniki": true,
-            "Streamable": true,
-            "Tumblr": true,
-            "Twitch Clips": true,
-            "VK": true,
-            "Vimeo": true,
-            "Pinterest": true,
-            "RUTUBE": true,
-            "Vine": true,
-            "Loom": true
+            "bilibili": "error.api.service.disabled",
+            "bilibili_tv": "error.api.service.disabled",
+            "bluesky": true,
+            "dailymotion": true,
+            "facebook": true,
+            "instagram": true,
+            "loom": true,
+            "odnoklassniki": true,
+            "pinterest": true,
+            "reddit": true,
+            "rutube": true,
+            "snapchat": true,
+            "soundcloud": true,
+            "streamable": true,
+            "tiktok": true,
+            "tumblr": true,
+            "twitch": true,
+            "twitter": true,
+            "vimeo": true,
+            "vk": true,
+            "youtube": true,
+            "youtube_music": true,
+            "youtube_shorts": true
         },
-        "version": "7.15",
-        "branch": "current",
-        "commit": "05ba1f0",
-        "name": "olly",
-        "cors": true,
-        "score": 90
+        "trust": 1,
+        "version": "10.7"
     },
     // ...
 ]</pre>
