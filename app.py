@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 from flask_caching import Cache
 from scan import scan_instances
 from utils import colors, sort_instances, get_instances
@@ -7,7 +7,7 @@ import logging
 
 env = environ
 dev = False
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='')
 app.config["CACHE_TYPE"] = "SimpleCache" if __name__ != "__main__" else "NullCache"
 cache = Cache(app)
 cache.clear()
@@ -111,6 +111,10 @@ def instance(instanceapi):
     return render_template("instance.html",
         instance=instance, analytics=analytics
     )
+
+@app.route('/static/<path:path>')
+def static_redirect(path):
+    return redirect(f"/{path}")
 
 if __name__ == "__main__":
     print(f"{colors.yellow}WARN: You have started this program in developer mode,")
