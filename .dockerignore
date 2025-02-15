@@ -2,7 +2,7 @@
 *.yml
 LICENSE
 Dockerfile
-.gitea
+.forgejo
 
 # not in the repo rn but can be added at any time
 *.png
