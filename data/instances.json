@@ -10,6 +10,7 @@
     ["https", "cobalt.tools", "nachos.imput.net", 1],
     ["https", "cobalt.tools", "sunny.imput.net", 1],
     ["https", "cobalt.tools", "blossom.imput.net", 1],
+    ["https", "cobalt.tools", "noodle.imput.net", 1],
     ["https", "cobalt.kwiatekmiki.com", "cobalt-api.kwiatekmiki.com", 1],
     ["https", "cobalt-7.kwiatekmiki.com", "cobalt-7.kwiatekmiki.com", 1],
     ["https", "cobalt.canine.tools", "cobalt-backend.canine.tools", 1],
