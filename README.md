@@ -3,7 +3,7 @@ a simple-to-use and convenient list of [cobalt](https://cobalt.tools) instances.
 
 only use the official instance unless you have issues with it or you need to use the api and if you can, only limit yourself to the trusted instances.
 
-please note that this instance list is not official nor its creator, [kwiatekmiki](https://kwiatekmiki.com), is affiliated with [imput](https://imput.net), the creators or cobalt.
+please note that this instance list is unofficial and is not endorsed by [imput](https://imput.net), the creators or cobalt.
 
 ## why are basically all instances missing?
 > several bad actors are continuously scraping public cobalt instances for youtube videos. as a result, many (sometimes personal) instances either run out of bandwidth, cookies, or experience reduced performance. this week it got especially bad, completely knocking out several community instances.
