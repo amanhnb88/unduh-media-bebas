@@ -1,0 +1,15 @@
+[
+    ["protocol", "api", "frontend"],
+    ["https", "kityune.imput.net", "cobalt.tools"],
+    ["https", "olly.imput.net", "cobalt.tools"],
+    ["https", "nachos.imput.net", "cobalt.tools"],
+    ["https", "sunny.imput.net", "cobalt.tools"],
+    ["https", "blossom.imput.net", "cobalt.tools"],
+    ["https", "noodle.imput.net", "cobalt.tools"],
+    ["https", "cobalt-api.kwiatekmiki.com", "cobalt.kwiatekmiki.com"],
+    ["https", "cobalt-7.kwiatekmiki.com", "cobalt-7.kwiatekmiki.com"],
+    ["https", "cobalt-backend.canine.tools", "cobalt.canine.tools"],
+    ["https", "downloadapi.stuff.solutions", "download.stuff.solutions"],
+    ["https", "capi.3kh0.net", "cobalt.3kh0.net"],
+    ["https", "cobalt-api.meowing.de", "cobalt.meowing.de"]
+]
