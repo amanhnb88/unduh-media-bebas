@@ -1,3 +1,21 @@
+<script module lang="ts">
+    declare const env: Record<string, string | undefined>;
+</script>
+
+<svelte:head>
+    {#if env.PLAUSIBLE_DOMAIN}
+        <script defer data-domain={env.PLAUSIBLE_DOMAIN}
+                src="https://{env.PLAUSIBLE_HOST || 'plausible.io'}/js/script.js"
+        ></script>
+    {/if}
+
+    {#if env.UMAMI_ID}
+        <script defer data-website-id={env.UMAMI_ID}
+                src="https://{env.UMAMI_HOST || 'cloud.umami.is'}/js/script.js"
+        ></script>
+    {/if}
+</svelte:head>
+
 <style>
     header {
         display: flex;
