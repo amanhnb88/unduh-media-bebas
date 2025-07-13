@@ -20,7 +20,7 @@ try { // @ts-ignore
 
 let commit: string = "dev";
 try {
-    commit = execSync("git rev-parse --short @").toString();
+    commit = execSync("git rev-parse --short @").toString().trim();
 } catch {}
 
 const init: RequestInit = {
