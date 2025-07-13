@@ -41,6 +41,43 @@
     </details>
 
     <details>
+        <summary>how do i run an instance?</summary>
+        <div>
+            <p id="running-an-instance"><b>requirements:</b></p>
+            <p>
+                first of all, you'll need a computer running linux.
+                it can run something else, but it might be more complicated to set up.
+            </p>
+            <p>if you plan to make the instance public, try to keep it running 24/7.</p>
+        </div>
+
+        <div>
+            <p><b>running the instance:</b></p>
+            <p>
+                creators of cobalt have already made a good tutorial for this, read it
+                <a href="https://github.com/imputnet/cobalt/blob/main/docs/run-an-instance.md">
+                    here
+                </a>.
+            </p>
+            <p class="margin">
+                after hosting the instance, you should also protect it.
+                it's optional, but recommended if you plan on exposing it to the internet.
+            </p>
+            <p>
+
+                again, there is already a tutorial for this, and you can read it
+                <a href="https://github.com/imputnet/cobalt/blob/main/docs/protect-an-instance.md">
+                    here
+                </a>.
+            </p>
+            <p class="margin">
+                if you set it up and exposed it,
+                <a href="#adding-an-instance">consider adding your instance to this instance list</a>!
+            </p>
+        </div>
+    </details>
+
+    <details>
         <summary>how do i add my instance here?</summary>
         <p id="adding-an-instance">there are multiple ways to do it:</p>
         <ul>
