@@ -1,15 +1,32 @@
 <style>
+    main {
+        max-width: 800px;
+    }
+
     p {
         margin: 0;
     }
 
     summary {
         font-size: 16px;
-        margin-bottom: 2px;
+        margin-bottom: 6px;
+    }
+
+    details > :not(summary, ul) {
+        padding-left: 14px;
     }
 
     details {
-        margin-bottom: 8px;
+        margin-bottom: 4px;
+    }
+
+    main:has(details[open]) > details,
+    details > div {
+        margin-bottom: 10px;
+    }
+
+    .margin {
+        margin-top: 6px;
     }
 
     a {
@@ -17,8 +34,8 @@
     }
 
     ul {
-        margin: 0;
-        padding-left: 16px;
+        margin: 2px 0;
+        padding-left: 31px;
     }
 
     li {
