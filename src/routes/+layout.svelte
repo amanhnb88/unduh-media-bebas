@@ -1,5 +1,6 @@
-<script module lang="ts">
-    declare const env: Record<string, string | undefined>;
+<script lang="ts">
+    const props = $props();
+    const env: { [key: string]: string } = props.data.env;
 </script>
 
 <svelte:head>
@@ -65,4 +66,4 @@
     </div>
 </header>
 
-<slot />
+{@render props.children()}

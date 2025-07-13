@@ -36,7 +36,7 @@ that depends on how you want to do it.
 3. (optional but recommended) install pnpm using `npm install -g pnpm`
 4. install dependencies using `npm`/`pnpm install`
 5. build the website using `pnpm build`
-6. run using `node build`
+6. run using `pnpm start`
 
 ### for testing changes
 it's explained [here](./CONTRIBUTING.md#testing-your-changes)

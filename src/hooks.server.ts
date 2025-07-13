@@ -1,8 +1,10 @@
 import { getInstances } from "$lib/instances";
 import { spawn } from "child_process";
-declare const env: Record<string, string | undefined>;
+
+const env = process.env;
 const scanInterval: string | undefined = env.SCAN_INTERVAL;
 const scanOnStart: string | undefined = env.SCAN_ON_START;
+
 const scan = () =>
     spawn("node", ["src/lib/scan.ts"], { stdio: "inherit" });
 
