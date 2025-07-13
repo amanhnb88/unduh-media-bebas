@@ -114,9 +114,9 @@ async function testInstance(
             ...init,
             redirect: "manual"
         });
-    } catch (e) {
+    } catch {
         console.log(colors.red(
-            api + " is offline, marking as offline. "
+            api + " is offline, marking as offline."
         ));
         return instance;
     }
@@ -132,7 +132,7 @@ async function testInstance(
                 apiRequest = await fetch(apiLink, init);
             } catch {
                 console.log(colors.red(
-                    api + " is offline, marking as offline. "
+                    api + " is offline, marking as offline."
                 ));
                 return instance;
             }
@@ -228,7 +228,7 @@ async function testInstance(
 
         try {
             result = await testService(apiLink, api, test, services);
-            test = test.replace("-", " ")
+            test = test.replace("-", " ");
             switch (result) {
                 case true:
                     console.log(colors.green(
@@ -277,6 +277,15 @@ async function testInstance(
                     instance.info.auth = true;
                     Object.keys(tests).forEach((key: string) => {
                         instance.services[key] = instance.services[key] || "invalid api key"
+                    });
+
+                    return instance;
+                case "error.api.auth.jwt.missing":
+                    console.log(colors.red(`turnstile is required on ${api}, set up an api key.`));
+
+                    instance.info.auth = true;
+                    Object.keys(tests).forEach((key: string) => {
+                        instance.services[key] = instance.services[key] || "no api key"
                     });
 
                     return instance;
