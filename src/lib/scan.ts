@@ -287,7 +287,7 @@ async function testInstance(
             }
         } catch (e) {
             console.log(colors.red(
-                `something went wrong when trying to test ${test} on ${api}: ${e}`
+                `something went wrong when trying to test ${test} on ${api}, took ${time(start)}: ${e}`
             ));
         } finally {
             instance.services[test] = instance.services[test] || result;
