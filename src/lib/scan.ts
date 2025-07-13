@@ -291,7 +291,7 @@ async function testInstance(
             ));
         } finally {
             instance.services[test] = instance.services[test] || result;
-            const timeout = 4000 + (Math.random() * 2000);
+            const timeout = 5000 + (Math.random() * 2000);
             await new Promise(r => setTimeout(r, timeout));
         }
     }
