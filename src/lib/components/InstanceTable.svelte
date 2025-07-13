@@ -199,7 +199,7 @@
 
             <tr data-api={instance.api} data-online={instance.online}
                 data-frontend={instance.frontend || undefined} {hidden}
-                class={instance.status}
+                class={instance.online ? instance.status : "disabled"}
                 data-auth={instance.online ? (instance.info?.auth || false) : false}
             >
                 <td>
