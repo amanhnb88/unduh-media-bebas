@@ -18,9 +18,10 @@ try { // @ts-ignore
     config.apiKeys = configFile.apiKeys || {};
 } catch {}
 
-let commit: string = "dev";
+let commit: string = "unknown";
 try {
-    commit = execSync("git rev-parse --short @").toString().trim();
+    commit = (await readFile(".git/refs/heads/main"))
+        .toString().slice(0, 8);
 } catch {}
 
 const init: RequestInit = {
