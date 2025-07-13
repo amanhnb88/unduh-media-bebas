@@ -16,6 +16,7 @@
             "protocol": "https",
             "online": true,
             "score": 64,
+            "status": "medium",
             "services": {
                 "youtube": true,
                 "youtube music": true,
