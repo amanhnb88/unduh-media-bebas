@@ -2,8 +2,8 @@ services:
   instances:
     container_name: instances
     image: codeberg.org/kwiat/instances:1 # change to `build: .` for local changes
-    # replace the first "4343" with the port you want to run this on
-    ports: ["4343:4343"]
+    # replace "4343" with the port you want to run this on
+    ports: ["4343:3000"]
 
     volumes:
       - ./output:/app/src/lib/output
