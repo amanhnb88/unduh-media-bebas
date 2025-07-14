@@ -50,10 +50,10 @@ async function getXiaohongshuTest(): Promise<string> {
     try {
         const { body } = await request("https://www.xiaohongshu.com/explore");
         const response = await body.text();
-        const matches = response.match(/\/explore\\\/[a-f0-9]{24}\\?xsec_token=[^&]+(?:&amp;|&)xsec_source=/);
+        const matches = response.match(/\/explore\\[a-f0-9]{24}\?xsec_token=[^&]+(?:&amp;|&)xsec_source=/);
 
         if (!matches || matches?.length < 1) throw "no match";
-        return matches[0];
+        return "https://www.xiaohongshu.com" + matches[0];
     } catch {
         console.log(colors.red(
             "couldn't get the xiaohongshu test, defaulting to a link that might've already expired",
