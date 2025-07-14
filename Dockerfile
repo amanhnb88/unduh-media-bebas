@@ -7,8 +7,9 @@ FROM base AS base-pnpm
 RUN apk add pnpm
 
 FROM base-pnpm AS build
+RUN pnpm install --frozen-lockfile
 COPY . .
-RUN pnpm install --frozen-lockfile && pnpm build
+RUN pnpm build
 
 FROM base-pnpm AS prod
 COPY --from=build /app/build build
