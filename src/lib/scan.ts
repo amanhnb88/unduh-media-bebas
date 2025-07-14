@@ -35,6 +35,10 @@ const init = {
 
 type InputInstance = [Protocol, string, string];
 
+function time(start: number): string {
+    return (new Date().getTime() - start) / 1000 + "s";
+}
+
 function status(s: number) {
     if (s === 100) return "perfect";
     else if (s > 75) return "good";
@@ -46,10 +50,6 @@ async function getJsonFile(path: string): Promise<any> {
     const file: Buffer = await readFile(path);
     const content: string = file.toString();
     return JSON.parse(content);
-}
-
-function time(start: number): string {
-    return (new Date().getTime() - start) / 1000 + "s";
 }
 
 async function testService(
