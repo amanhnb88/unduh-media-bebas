@@ -1,4 +1,5 @@
 node_modules
+/src/lib/input/config.ts
 output
 
 .output
@@ -22,3 +23,6 @@ desktop.ini
 LICENSE
 Dockerfile
 .*ignore
+
+.git
+!.git/refs/heads/main

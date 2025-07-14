@@ -1,17 +1,17 @@
 import type { Instance, Protocol } from "./types";
 import { readFile, writeFile, mkdir } from "fs/promises";
-import { execSync } from "child_process";
 import colors from "colors/safe.js";
 
 let config: {
-    ignored: string[];
+    ignored: string[],
     apiKeys: {
         [api: string]: string,
-    }
+    },
 } = {
     ignored: [],
-    apiKeys: {}
+    apiKeys: {},
 };
+
 try { // @ts-ignore
     const configFile = await import('./input/config.ts');
     config.ignored = configFile.ignored || [];
@@ -63,7 +63,7 @@ async function testService(
 
     try {
         const controller = new AbortController();
-        setTimeout(() => controller.abort(), service === "soundcloud" ? 30000 : 90000);
+        setTimeout(() => controller.abort(), service === "soundcloud" ? 30000 : 60000);
 
         const request: Response = await fetch(apiLink, {
             ...init,
@@ -327,8 +327,9 @@ const instances: InputInstance[] = (await getJsonFile("src/lib/input/instances.j
 instances.shift();
 
 const start = new Date().getTime();
-const output: Instance[] = (await Promise.all(instances.map(async i => {
+const output: Instance[] = (await Promise.all(instances.map(async (i, x) => {
     try {
+        await new Promise(r => setTimeout(r, x * 100));
         const start = new Date().getTime();
         const result = await testInstance(...i);
 
