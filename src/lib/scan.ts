@@ -1,5 +1,5 @@
-import type { Instance, Protocol } from "./types";
-import { readFile, writeFile, mkdir } from "fs/promises";
+import type {Instance, Protocol} from "./types";
+import { mkdir, readFile, writeFile } from "fs/promises";
 import colors from "colors/safe.js";
 import { Dispatcher, request } from "undici";
 
@@ -44,6 +44,23 @@ function status(s: number) {
     else if (s > 75) return "good";
     else if (s > 40) return "medium";
     else return "bad";
+}
+
+async function getXiaohongshuTest(): Promise<string> {
+    try {
+        const { body } = await request("https://www.xiaohongshu.com/explore");
+        const response = await body.text();
+        const matches = response.match(/\/explore\\\/[a-f0-9]{24}\\?xsec_token=[^&]+(?:&amp;|&)xsec_source=/);
+
+        if (!matches || matches?.length < 1) throw "no match";
+        return matches[0];
+    } catch {
+        console.log(colors.red(
+            "couldn't get the xiaohongshu test, defaulting to a link that might've already expired",
+        ));
+
+        return tests.xiaohongshu.toString();
+    }
 }
 
 async function getJsonFile(path: string): Promise<any> {
@@ -324,7 +341,8 @@ const rawTests: Tests = await getJsonFile("src/lib/input/tests.json");
 let tests: Tests = {};
 
 for (const test of Object.entries(rawTests)) {
-    tests[test[0].replaceAll(" ", "-")] = test[1];
+    tests[test[0].replaceAll(" ", "-")] =
+        test[0] === "xiaohongshu" ? await getXiaohongshuTest() : test[1];
 }
 
 const instances: InputInstance[] = (await getJsonFile("src/lib/input/instances.json"))
