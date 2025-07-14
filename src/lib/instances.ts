@@ -5,7 +5,8 @@ export async function getInstances(): Promise<Instance[]> {
     try {
         const file: Buffer = await readFile("src/lib/output/instances.json");
         return JSON.parse(file.toString())
-            .sort((a: any, b: any) => (b.score || 0) - (a.score || 0));
+            .sort((a: any, b: any) => (b.score || 0) - (a.score || 0))
+            .filter(a => a.toString().toLowerCase().includes("api-key"));
     } catch {
         return [];
     }
