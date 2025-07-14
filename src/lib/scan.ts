@@ -1,6 +1,7 @@
 import type { Instance, Protocol } from "./types";
 import { readFile, writeFile, mkdir } from "fs/promises";
 import colors from "colors/safe.js";
+import { Dispatcher, request } from "undici";
 
 let config: {
     ignored: string[],
@@ -24,7 +25,7 @@ try {
         .toString().slice(0, 8);
 } catch {}
 
-const init: RequestInit = {
+const init = {
     headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
@@ -57,7 +58,7 @@ async function testService(
 
     test: string,
     services?: string[],
-): Promise<string | boolean> {
+): Promise<string | any[] | boolean> {
     const service = keyToService(test);
     if (services && !services.includes(service)) return false;
 
@@ -65,7 +66,7 @@ async function testService(
         const controller = new AbortController();
         setTimeout(() => controller.abort(), service === "soundcloud" ? 30000 : 60000);
 
-        const request: Response = await fetch(apiLink, {
+        const { body, statusCode } = await request(apiLink, {
             ...init,
             signal: controller.signal,
             method: "POST",
@@ -80,7 +81,7 @@ async function testService(
             }
         });
 
-        let response: any = await request.text();
+        let response: any = await body.text();
         try {
             response = JSON.parse(response);
         } catch (e) {
@@ -89,11 +90,12 @@ async function testService(
         }
 
         if (response.status !== "error") {
-            if (request.status === 200) return true;
+            if (statusCode === 200) return true;
             return "status code isn't 200";
         } else return response.text?.split(".")[0] || response.error?.code || "no error";
     } catch (e: any) {
         if (e.name === "AbortError") return "timed out";
+        if (e.name === "AggregateError") return e.errors;
         throw e;
     }
 }
@@ -109,11 +111,11 @@ async function testInstance(
         online: false,
     };
 
-    let apiRequest: Response;
+    let apiRequest: Dispatcher.ResponseData;
     try {
-        apiRequest = await fetch(apiLink + "/api/serverInfo", {
+        apiRequest = await request(apiLink + "/api/serverInfo", {
             ...init,
-            redirect: "manual"
+            maxRedirections: 0,
         });
     } catch {
         console.log(colors.red(
@@ -123,14 +125,14 @@ async function testInstance(
     }
 
     let newApi: boolean;
-    switch (apiRequest ? apiRequest.status : 1) {
+    switch (apiRequest ? apiRequest.statusCode : 1) {
         case 200:
             newApi = false;
             apiLink += "/api/json";
             break;
         case 302:
             try {
-                apiRequest = await fetch(apiLink, init);
+                apiRequest = await request(apiLink, init);
             } catch {
                 console.log(colors.red(
                     api + " is offline, marking as offline."
@@ -143,12 +145,13 @@ async function testInstance(
         default:
             console.log(colors.red(
                 api + " is offline or returned an invalid response, marking as offline. " +
-                `[${apiRequest?.status || ""}]`
+                `[${apiRequest?.statusCode || ""}]`
             ));
             return instance;
     }
 
-    let apiInfo: any = await apiRequest.text();
+    if (!apiRequest) return instance;
+    let apiInfo: any = await apiRequest.body.text();
     try {
         apiInfo = JSON.parse(apiInfo);
     } catch {
@@ -176,9 +179,9 @@ async function testInstance(
 
 
     if (newApi) {
-        let corsHeader: string | null = null;
+        let corsHeader: string | undefined = undefined;
         try {
-            corsHeader = apiRequest.headers.get("access-control-allow-origin");
+            corsHeader = apiRequest.headers["access-control-allow-origin"]?.toString();
         } catch {}
 
         instance = {
@@ -228,8 +231,10 @@ async function testInstance(
         let result: string | boolean = "something went wrong while testing";
 
         try {
-            result = await testService(apiLink, api, test, services);
+            const _result = await testService(apiLink, api, test, services);
+            result = Array.isArray(_result) ? "something went really wrong while testing" : _result;
             test = test.replace("-", " ");
+
             switch (result) {
                 case true:
                     console.log(colors.green(
@@ -269,10 +274,10 @@ async function testInstance(
                 case "error.api.auth.key.ip_not_allowed":
                 case "error.api.auth.key.ua_not_allowed":
                     console.log(colors.red(
-                        `${api} didn't accept your api key, ` +
+                        `${api} didn't accept your api key` +
                         (result.endsWith("invalid_ip") ?
-                            "because something went wrong. plase report this to the instance owner" :
-                            "check your config") + `: ${result}`
+                            " because something went wrong. report this to the instance owner" :
+                            ", check your config") + `: ${result}`
                     ));
 
                     instance.info.auth = true;
@@ -292,7 +297,7 @@ async function testInstance(
                     return instance;
                 default:
                     console.log(colors.red(
-                        `${test} doesn't work on ${api}, took ${time(start)}: ` + result
+                        `${test} doesn't work on ${api}, took ${time(start)}: ` + _result.toString()
                     ));
             }
         } catch (e) {
