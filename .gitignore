@@ -2,6 +2,8 @@ node_modules
 /src/lib/input/config.ts
 /src/lib/output/
 
+*compose.override.y*ml
+
 .output
 .vercel
 .netlify
