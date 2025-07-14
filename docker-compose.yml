@@ -5,6 +5,10 @@ services:
     # replace "4343" with the port you want to run this on
     ports: ["4343:3000"]
 
+    env_file:
+      - path: .env
+        required: false
+
     volumes:
       - ./output:/app/src/lib/output
       # uncomment if you made a configuration file
