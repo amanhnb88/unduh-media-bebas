@@ -1,6 +1,7 @@
 node_modules
 /src/lib/input/config.ts
 /src/lib/output/
+/config.ts
 
 *compose.override.y*ml
 

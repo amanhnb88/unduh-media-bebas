@@ -1,7 +1,8 @@
 node_modules
 /src/lib/input/config.ts
-output
+/config.ts
 
+output
 .output
 .vercel
 .netlify
