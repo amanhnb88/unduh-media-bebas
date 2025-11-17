@@ -11,5 +11,6 @@
     ["https", "cobalt-backend.canine.tools", "cobalt.canine.tools"],
     ["https", "downloadapi.stuff.solutions", "download.stuff.solutions"],
     ["https", "capi.3kh0.net", "cobalt.3kh0.net"],
-    ["https", "cobalt-api.meowing.de", "cobalt.meowing.de"]
+    ["https", "cobalt-api.meowing.de", "cobalt.meowing.de"],
+    ["https", "cobalt-api.clxxped.lol", "cobalt.clxxped.lol"]
 ]
