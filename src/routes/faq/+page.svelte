@@ -100,7 +100,7 @@
         <ul>
             <li>
                 make an account on <a href="https://codeberg.org">codeberg</a>, edit
-                <a href="https://codeberg.org/kwiat/instances/src/src/input/instances.json">this</a>
+                <a href="https://codeberg.org/kwiat/instances/src/src/lib/input/instances.json">this</a>
                 file to make it include your instance at the end, and make a pull request
             </li>
             <li>contact me on discord, my username is <b>kwiatekmiki</b></li>
